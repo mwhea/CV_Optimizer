@@ -1,0 +1,592 @@
+{
+    "Contact Info": {
+        "name": "Michael Wheatley",
+        "github": "https://github.com/mwhea/"
+    },
+    "About Me": {},
+    "Education": [
+        {
+            "name": "Computer Engineering Technology - Computing Science",
+            "location": "Algonquin College, Ottawa",
+            "duration": "2019-2022"
+        },
+        {
+            "name": "Film Animation, Minor in Creative Writing",
+            "location": "Concordia University, Montreal",
+            "duration": "2010-2016"
+        },
+        {
+            "name": "Liberal Arts",
+            "location": "Dawson College, Montreal",
+            "duration": "2008-2010"
+        }
+    ],
+    "Hard Skills": {
+        "Programming Languages": [
+            {
+                "name": "Java",
+                "importance": "5",
+                "skills demonstrated": [
+                    "Java",
+                    "C#",
+                    ".NET"
+                ]
+            },
+            {
+                "name": "C#",
+                "importance": "4",
+                "skills demonstrated": [
+                    "Java",
+                    "C#",
+                    ".NET"
+                ]
+            },
+            {
+                "name": "C",
+                "importance": "4",
+                "skills demonstrated": [
+                    "Low-Level"
+                ]
+            },
+            {
+                "name": "C++",
+                "importance": "4",
+                "skills demonstrated": [
+                    "Low-Level"
+                ]
+            },
+            {
+                "name": "Javascript",
+                "importance": "4",
+                "skills demonstrated": [
+                    "WebDev"
+                ]
+            },
+            {
+                "name": "Typescript",
+                "importance": "5",
+                "skills demonstrated": [
+                    "WebDev"
+                ]
+            },
+            {
+                "name": "Assembly",
+                "importance": "3",
+                "skills demonstrated": [
+                    "Low-Level"
+                ]
+            },
+            {
+                "name": "PHP",
+                "importance": "2",
+                "skills demonstrated": [
+                    "WebDev"
+                ]
+            }
+        ],
+        "Other Tools": [
+            {
+                "name": "git",
+                "importance": "5"
+            },
+            {
+                "name": "grep",
+                "importance": "2"
+            },
+            {
+                "name": "Jira",
+                "importance": "4",
+                "skills demonstrated": [
+                    "Teamwork",
+                    "Jira"
+                ]
+            },
+            {
+                "name": "Visual Studio",
+                "importance": "2"
+            },
+            {
+                "name": "Eclipse IDE",
+                "importance": "2"
+            },
+            {
+                "name": "VS Code",
+                "importance": "2",
+                "skills demonstrated": [
+                    "Javascript",
+                    "Typescript"
+                ]
+            },
+            {
+                "name": "Microsoft Azure",
+                "importance": "3",
+                "skills demonstrated": [
+                    ".NET",
+                    "Cloud"
+                ]
+            },
+            {
+                "name": "VMWare Tools",
+                "importance": "2",
+                "skills demonstrated": [
+                    "VMs"
+                ]
+            }
+        ],
+        "Web Development": [
+            {
+                "name": "HTML5",
+                "importance": "4",
+                "skills demonstrated": [
+                    "WebDev"
+                ]
+            },
+            {
+                "name": "CSS",
+                "importance": "4",
+                "skills demonstrated": [
+                    "WebDev"
+                ]
+            },
+            {
+                "name": "React",
+                "importance": "4",
+                "skills demonstrated": [
+                    "WebDev"
+                ]
+            },
+            {
+                "name": "NodeJS",
+                "importance": "5",
+                "skills demonstrated": [
+                    "WebDev"
+                ]
+            }
+        ],
+        "Operating Systems": [
+            {
+                "name": "Shell scripting",
+                "importance": "3",
+                "skills demonstrated": [
+                    "Linux"
+                ]
+            },
+            {
+                "name": "Windows",
+                "importance": "3"
+            },
+            {
+                "name": "Linux",
+                "importance": "3",
+                "skills demonstrated": [
+                    "Linux"
+                ]
+            }
+        ],
+        "Databases": [
+            {
+                "name": "PostgreSQL",
+                "importance": "3",
+                "skills demonstrated": [
+                    "Databases"
+                ]
+            },
+            {
+                "name": "MySQL",
+                "importance": "3",
+                "skills demonstrated": [
+                    "Databases"
+                ]
+            },
+            {
+                "name": "Experience designing, building, maintaining and querying databases with SQL.",
+                "importance": "3",
+                "skills demonstrated": [
+                    "Databases"
+                ]
+            },
+            {
+                "name": "In personal time, learned Java database connectivity and built a program employing it.",
+                "importance": "2",
+                "skills demonstrated": [
+                    "Databases",
+                    "Java"
+                ]
+            }
+        ],
+        "Networking": [
+            {
+                "name": "Wireshark",
+                "importance": "2",
+                "skills demonstrated": [
+                    "Networking"
+                ]
+            },
+            {
+                "name": "Cisco Packet Tracer",
+                "importance": "2",
+                "skills demonstrated": [
+                    "Networking"
+                ]
+            }
+        ]
+    },
+    "Soft Skills": {
+        "Quick Learner": [
+            {
+                "name": "Graduated with 3.98 GPA",
+                "importance": "5"
+            }
+        ],
+        "Teamwork": [
+            {
+                "name": "Identified priorities and assigned tasks.",
+                "importance": "3",
+                "skills demonstrated": [
+                    "Teamwork"
+                ]
+            },
+            {
+                "name": "Scheduled meetings and managed time.",
+                "importance": "3",
+                "skills demonstrated": [
+                    "Teamwork"
+                ]
+            },
+            {
+                "name": "All group projects have been graded A+",
+                "importance": "3",
+                "skills demonstrated": [
+                    "Teamwork"
+                ]
+            },
+            {
+                "name": "Final group project placed third across entire STEM department (200$ prize)",
+                "importance": "3",
+                "skills demonstrated": [
+                    "Teamwork"
+                ]
+            }
+        ],
+        "Problem Solving": [
+            {
+                "name": "Won class challenge to implement final Assembly project with fewest machine instructions.",
+                "importance": "5",
+                "skills demonstrated": [
+                    "Assembly"
+                ]
+            },
+            {
+                "name": "Have several times been recognized by an instructor as solving an assigned problem better than the answer key.",
+                "importance": "4"
+            }
+        ],
+        "Time Management": [
+            {
+                "name": "Maintained Dean’s Honours List as a first time father.",
+                "importance": "4"
+            },
+            {
+                "name": "Kept ahead of all assignment deadlines.",
+                "importance": "4"
+            }
+        ],
+        "Communication": [
+            {
+                "name": "Prior academic background in liberal arts and creative writing.",
+                "importance": "3",
+                "skills demonstrated": [
+                    "Communication",
+                    "Creativity"
+                ]
+            },
+            {
+                "name": "Have edited essays and scientific manuscripts.",
+                "importance": "3",
+                "skills demonstrated": [
+                    "Communication"
+                ]
+            },
+            {
+                "name": "Participate in regular meetings of several discussion and debate groups.",
+                "importance": "3",
+                "skills demonstrated": [
+                    "Communication",
+                    "Politics"
+                ]
+            }
+        ],
+        "Other Qualifications": [
+            {
+                "name": "Plays Kerbal Space Program.",
+                "importance": "3",
+                "skills demonstrated": [
+                    "Space"
+                ]
+            }
+        ]
+    },
+    "Personal Projects": {
+        "Prediction Market Trading Bot": [
+            {
+                "description": "Placed 1st in a trading bot programming contest ($500 prize)",
+                "importance": "5",
+                "skills demonstrated": [
+                    "Finance",
+                    "Javascript",
+                    "Typescript",
+                    "Politics"
+                ]
+            },
+            {
+                "description": "Placed 8th ($250) competing with humans in a concurrent contest to predict grant awardees",
+                "importance": "5",
+                "skills demonstrated": [
+                    "Finance",
+                    "Javascript",
+                    "Typescript",
+                    "Politics"
+                ]
+            },
+            {
+                "description": "The resultant bot is the #1 top performing user-created bot on the website and #6 trader in all-time profits",
+                "importance": "5",
+                "skills demonstrated": [
+                    "Finance",
+                    "Javascript",
+                    "Typescript",
+                    "Politics"
+                ]
+            },
+            {
+                "description": "The code can be found at https://github.com/mwhea/Manifold_Trading_Bots",
+                "importance": "4",
+                "skills demonstrated": [
+                    "Finance",
+                    "Javascript",
+                    "Typescript",
+                    "Politics"
+                ]
+            },
+            {
+                "description": "(manifold.markets is a forecasting website dedicated to scoring predictions of future events. Its market format enables traditional trading strategies such as market-making and arbitrage.)",
+                "importance": "4",
+                "skills demonstrated": [
+                    "Finance",
+                    "Javascript",
+                    "Typescript",
+                    "Politics"
+                ]
+            }
+        ],
+        "CV Optimizer": [
+            {
+                "description": "Reorganizes CV based on keywords in a job description",
+                "importance": "4",
+                "skills demonstrated": [
+                    "Javascript",
+                    "Creativity",
+                    "Humor"
+                ]
+            },
+            {
+                "description": "Takes as inputs a plaintext job posting and list of candidate skills & experience, and uses the Adobe Indesign scripting API (javascript based) to fill in the CV with only those skills which are most relevant to the listing.",
+                "importance": "4",
+                "skills demonstrated": [
+                    "Javascript",
+                    "Creativity",
+                    "Humor"
+                ]
+            },
+            {
+                "description": "The code can be found at https://github.com/mwhea/CV_Optimizer",
+                "importance": "4",
+                "skills demonstrated": [
+                    "Javascript",
+                    "Creativity",
+                    "Humor"
+                ]
+            }
+        ]
+    },
+    "Relevant Experience": [
+        {
+            "position": "Co-op - Support Engineer, Technical Expertise Center",
+            "employer": "Nokia, Ottawa",
+            "duration": "Sept 2021-Dec 2021",
+            "duties": [
+                {
+                    "description": "Investigated bugs in Nokia network equipment and management software.",
+                    "importance": "4",
+                    "skills demonstrated": [
+                        "Debugging",
+                        "Networking"
+                    ]
+                },
+                {
+                    "description": "Used RHEL virtual machines to simulate customer set-ups.",
+                    "importance": "4",
+                    "skills demonstrated": [
+                        "Linux",
+                        "VMs",
+                        "Networking"
+                    ]
+                },
+                {
+                    "description": "Coordinated with customer-facing tech support through Jira tickets, with them forwarding to our team the problems they were unable to resolve.",
+                    "importance": "2",
+                    "skills demonstrated": [
+                        "Jira",
+                        "Stakeholder Interaction",
+                        "Teamwork"
+                    ]
+                }
+            ]
+        },
+        {
+            "position": "Co-op - Digital Solutions Coordinator",
+            "employer": "Canadian Film Institute, Ottawa",
+            "duration": "Jan 2021-Sept 2021",
+            "duties": [
+                {
+                    "description": "Built a web service and AJAX functionality to enable, on a Wordpress-based site, dynamic content drawn from the festival database.",
+                    "importance": "5",
+                    "skills demonstrated": [
+                        "Web Services",
+                        "Javascript",
+                        "Wordpress",
+                        "Databases",
+                        "PHP"
+                    ]
+                },
+                {
+                    "description": "Managed MySQL database as the organization transferred their data to a new platform.",
+                    "importance": "5",
+                    "skills demonstrated": [
+                        "MySQL",
+                        "Databases"
+                    ]
+                },
+                {
+                    "description": "Used the expertise built up in the organization’s systems to assist other team members.",
+                    "importance": "2",
+                    "skills demonstrated": [
+                        "Teamwork"
+                    ]
+                },
+                {
+                    "description": "Invited back to update and expand the work for the 2022 festival year.",
+                    "importance": "4",
+                    "order": "z",
+                    "skills demonstrated": [
+                        "Web Services",
+                        "Javascript",
+                        "Wordpress",
+                        "PHP",
+                        "Teamwork",
+                        "Reliability"
+                    ]
+                }
+            ]
+        },
+        {
+            "position": "Writing Instructor",
+            "employer": "Thomas More Institute, Montreal",
+            "duration": "Jan 2019-March 2019",
+            "duties": [
+                {
+                    "description": "Designed lessons based on the institute’s participatory pedagogic style.",
+                    "importance": "3",
+                    "skills demonstrated": [
+                        "Communication",
+                        "Teaching"
+                    ]
+                },
+                {
+                    "description": "Led classroom through close reading and analysis of short stories and novel excerpts.",
+                    "importance": "3",
+                    "skills demonstrated": [
+                        "Communication",
+                        "Teaching",
+                        "Attention to Detail"
+                    ]
+                },
+                {
+                    "description": "Proof-read, edited, and provided individual feedback on students’ weekly writing exercises.",
+                    "importance": "3",
+                    "skills demonstrated": [
+                        "Communication",
+                        "Teaching",
+                        "Attention to Detail"
+                    ]
+                },
+                {
+                    "description": "Mentored students and assisted with writing issues in class and online.",
+                    "importance": "2",
+                    "skills demonstrated": [
+                        "Communication",
+                        "Teaching"
+                    ]
+                }
+            ]
+        },
+        {
+            "position": "Game Writer / Designer",
+            "employer": "Megara Entertainment, Cannes",
+            "duration": "July 2017-Sept 2017",
+            "duties": [
+                {
+                    "description": "Writer for a digital collectible card game, including game content and promotional materials.",
+                    "importance": "5",
+                    "skills demonstrated": [
+                        "Communication",
+                        "GameDev"
+                    ]
+                },
+                {
+                    "description": "Automated the assembly of card prototypes in Adobe InDesign using Data Merge, including automated typesetting with grep styles, and the processing of art assets with batch jobs in Photoshop.",
+                    "importance": "5"
+                },
+                {
+                    "description": "Responsibilities were extended to leadership of game design, for which I completed a first pass on 200 cards within the first two months, and organized all office playtests",
+                    "importance": "5",
+                    "skills demonstrated": [
+                        "GameDev"
+                    ]
+                }
+            ]
+        },
+        {
+            "position": "Administrative Assistant",
+            "employer": "Syn Studio, Montreal",
+            "duration": "Dec 2015-July 2016",
+            "duties": [
+                {
+                    "description": "Supported day-to-day operations of Syn Studio art school, including classroom set-up, course organization, maintenance of art and study supplies, as well as tracking student participation.",
+                    "importance": "2"
+                },
+                {
+                    "description": "Prepared introductory information for newly enrolled local and international students.",
+                    "importance": "2"
+                },
+                {
+                    "description": "Organized, set-up, and enrolled participants for studio events, vernissages, and workshops.",
+                    "importance": "2"
+                }
+            ]
+        }
+    ],
+    "Published Writing": [
+        {
+            "title": "The Plagiarist",
+            "publisher": "Bards and Sages Quarterly",
+            "date": "January 2020",
+            "importance": "4",
+            "skills demonstrated": [
+                "Communication",
+                "Creativity"
+            ]
+        }
+    ],
+    "References": []
+}

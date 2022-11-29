@@ -15,9 +15,14 @@ Todo:
     edit linkedin
     write formatted json
 */
+
+/* The modes are:
+ -text
+ -json
+ -pdf
+*/
+// const exportTo = "text";
 const exportTo = "json";
-// const exportTo = "json";
-const exportTo = "text";
 // const exportTo = "pdf";
 
 let cv = await readFile(new URL(`./cv.json`, import.meta.url));
@@ -88,71 +93,9 @@ for (let i in skillsSought) {
     console.log(skillsSought[i]);
 }
 
-recurseAnd(cv, (obj) => {
+adjustImportances(cv);
 
-    let anySkills = false;
-    if (obj["skills demonstrated"] !== undefined) {
-
-        for (let i in obj["skills demonstrated"]) {
-            console.log(skillsSought[0]+" = "+obj["skills demonstrated"][i])
-            if (skillsSought.find((s) => { return s === obj["skills demonstrated"][i]; })) {
-                anySkills = true;
-            }
-        }
-    }
-    if (anySkills === true) {
-        console.log(obj["name"] + ": " + obj["importance"] + " -> ")
-        obj["importance"] += 2;
-        console.log(obj["importance"])
-    }
-
-});
-
-recurseAnd(cv, (obj) => {
-
-    let markedForDeletion = [];
-    //let len = 
-    for (let i in obj) {
-
-        if (obj[i].importance === undefined) {
-        }
-        else if (obj[i].importance >= 3) {
-            if (obj[i].name!==undefined){
-            obj[i] = obj[i].name;
-            }
-            else if (obj[i].description!==undefined){
-                obj[i] = obj[i].description;
-                }
-        }
-        else if (obj[i].importance < 3){ 
-            if(obj[i].name ==="Cisco Packet Tracer"||obj[i].name ==="Wireshark"){console.log(i)}
-            if (Array.isArray(obj)){
-                markedForDeletion.push(i);
-            }
-            else {delete obj[i]; }
-        }
-    }
-    for (let i in markedForDeletion){
-        
-        obj.splice(markedForDeletion[markedForDeletion.length-1-i], 1);
-        //delete obj[markedForDeletion[i]];
-    }
-    return false;
-
-});
-
-
-
-// recurseAnd(cv, (obj) => {
-
-//     for (let i in obj) {
-
-//         if (obj[i]["skills demonstrated"] !== undefined) {
-//             delete obj[i]["skills demonstrated"]; 
-//         }
-//     }
-
-// });
+convertObjectsToStrings(cv);
 
 console.log(cv["Hard Skills"]["Networking"]);
 
@@ -162,29 +105,6 @@ if (exportTo === "json") {
 
 while (1);
 
-function recurseAnd(json, callback) {
-    if (Array.isArray(json)){
-        for (let i = 0; i < json.length; i++) {
-
-            callback(json[i])
-
-        }
-    }
-    else {
-        for (let i in json){
-            
-        // for (let i = 0; i < Object.keys(json).length; i++) {
-            callback(json[i])
-        }
-    }
-
-    for (let i in json) {
-
-        if (Array.isArray(json[i])) { recurseAnd(json[i], callback); }
-        else if (typeof json[i] === 'object') { recurseAnd(json[i], callback); }
-
-    }
-}
 
 function extractSkill(skill, searchStrings) {
     if (skillsSought.find((s) => s === skill) !== undefined) {
@@ -205,8 +125,8 @@ function extractSkill(skill, searchStrings) {
                 exerptLen = listing.length - 1 - index - 20;
             }
 
-            reportNewSkill(skill, "\""+listing.toString().substring(startIndex, startIndex + exerptLen)+"\"");
-            
+            reportNewSkill(skill, "\"" + listing.toString().substring(startIndex, startIndex + exerptLen) + "\"");
+
             skillsSought.push(skill);
             return;
 
@@ -214,11 +134,11 @@ function extractSkill(skill, searchStrings) {
     }
 }
 
-function reportNewSkill(skill, criterion){
+function reportNewSkill(skill, criterion) {
 
     let span = "\t"
-            if (skill.length<6){span = "\t\t";}
-            console.log("\"" + skill + "\""+span+"based on " + criterion);
+    if (skill.length < 6) { span = "\t\t"; }
+    console.log("\"" + skill + "\"" + span + "based on " + criterion);
 
 }
 
@@ -227,7 +147,7 @@ function inferSuperskill(skill, examples) {
         for (let i in examples) {
 
             if (skillsSought.find((s) => s === examples[i]) !== undefined) {
-                reportNewSkill(skill, "presence of \""+examples[i]+"\"");
+                reportNewSkill(skill, "presence of \"" + examples[i] + "\"");
                 skillsSought.push(skill);
                 return;
             }
@@ -235,3 +155,87 @@ function inferSuperskill(skill, examples) {
     }
 
 }
+
+
+function recurseAnd(json, callback) {
+
+    callback(json)
+
+    for (let i in json) {
+
+        if (Array.isArray(json[i])) { recurseAnd(json[i], callback); }
+        else if (typeof json[i] === 'object') { recurseAnd(json[i], callback); }
+
+    }
+}
+
+function adjustImportances(input) {
+
+    recurseAnd(input, (obj) => {
+
+        let anySkills = false;
+        if (obj["skills demonstrated"] !== undefined) {
+
+            for (let i in obj["skills demonstrated"]) {
+
+                if (skillsSought.find((s) => { return s === obj["skills demonstrated"][i]; })) {
+                    anySkills = true;
+                }
+            }
+        }
+        if (anySkills === true) {
+
+            obj["importance"] = parseInt(obj["importance"]) + 2;
+        }
+
+    });
+}
+
+function convertObjectsToStrings(cv) {
+    recurseAnd(cv, (obj) => {
+
+        let markedForDeletion = [];
+        //let len = 
+        for (let i in obj) {
+
+            if (obj[i].importance === undefined) {
+            }
+            else if (obj[i].importance >= 3) {
+                if (obj[i].name !== undefined) {
+                    obj[i] = obj[i].name;
+                }
+                else if (obj[i].description !== undefined) {
+                    obj[i] = obj[i].description;
+                }
+            }
+            else if (obj[i].importance < 3) {
+                if (Array.isArray(obj)) {
+                    markedForDeletion.push(i);
+                }
+                else { delete obj[i]; }
+            }
+        }
+        for (let i in markedForDeletion) {
+
+            obj.splice(markedForDeletion[markedForDeletion.length - 1 - i], 1);
+        }
+        return false;
+
+    });
+}
+function removeSkillLists(cv) {
+
+    recurseAnd(cv, (obj) => {
+
+        for (let i in obj) {
+
+            if (obj[i]["skills demonstrated"] !== undefined) {
+                delete obj[i]["skills demonstrated"];
+            }
+        }
+
+    });
+
+
+}
+

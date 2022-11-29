@@ -88,6 +88,73 @@ for (let i in skillsSought) {
     console.log(skillsSought[i]);
 }
 
+recurseAnd(cv, (obj) => {
+
+    let anySkills = false;
+    if (obj["skills demonstrated"] !== undefined) {
+
+        for (let i in obj["skills demonstrated"]) {
+            console.log(skillsSought[0]+" = "+obj["skills demonstrated"][i])
+            if (skillsSought.find((s) => { return s === obj["skills demonstrated"][i]; })) {
+                anySkills = true;
+            }
+        }
+    }
+    if (anySkills === true) {
+        console.log(obj["name"] + ": " + obj["importance"] + " -> ")
+        obj["importance"] += 2;
+        console.log(obj["importance"])
+    }
+
+});
+
+recurseAnd(cv, (obj) => {
+
+    let markedForDeletion = [];
+    //let len = 
+    for (let i in obj) {
+
+        if (obj[i].importance === undefined) {
+        }
+        else if (obj[i].importance >= 3) {
+            if (obj[i].name!==undefined){
+            obj[i] = obj[i].name;
+            }
+            else if (obj[i].description!==undefined){
+                obj[i] = obj[i].description;
+                }
+        }
+        else if (obj[i].importance < 3){ 
+            if(obj[i].name ==="Cisco Packet Tracer"||obj[i].name ==="Wireshark"){console.log(i)}
+            if (Array.isArray(obj)){
+                markedForDeletion.push(i);
+            }
+            else {delete obj[i]; }
+        }
+    }
+    for (let i in markedForDeletion){
+        
+        obj.splice(markedForDeletion[markedForDeletion.length-1-i], 1);
+        //delete obj[markedForDeletion[i]];
+    }
+    return false;
+
+});
+
+
+
+// recurseAnd(cv, (obj) => {
+
+//     for (let i in obj) {
+
+//         if (obj[i]["skills demonstrated"] !== undefined) {
+//             delete obj[i]["skills demonstrated"]; 
+//         }
+//     }
+
+// });
+
+console.log(cv["Hard Skills"]["Networking"]);
 
 if (exportTo === "json") {
     await writeFile(`./Michael_Wheatley_CV.json`, JSON.stringify(cv));
@@ -96,9 +163,27 @@ if (exportTo === "json") {
 while (1);
 
 function recurseAnd(json, callback) {
-    // for (let a in json){
-    //     console.log(a+": "+json[a]);
-    // }
+    if (Array.isArray(json)){
+        for (let i = 0; i < json.length; i++) {
+
+            callback(json[i])
+
+        }
+    }
+    else {
+        for (let i in json){
+            
+        // for (let i = 0; i < Object.keys(json).length; i++) {
+            callback(json[i])
+        }
+    }
+
+    for (let i in json) {
+
+        if (Array.isArray(json[i])) { recurseAnd(json[i], callback); }
+        else if (typeof json[i] === 'object') { recurseAnd(json[i], callback); }
+
+    }
 }
 
 function extractSkill(skill, searchStrings) {

@@ -97,6 +97,8 @@ adjustImportances(cv);
 
 convertObjectsToStrings(cv);
 
+removeEmpty(cv);
+
 console.log(cv["Hard Skills"]["Networking"]);
 
 if (exportTo === "json") {
@@ -163,11 +165,14 @@ function recurseAnd(json, callback) {
 
     for (let i in json) {
 
-        if (Array.isArray(json[i])) { recurseAnd(json[i], callback); }
-        else if (typeof json[i] === 'object') { recurseAnd(json[i], callback); }
+        if (Array.isArray(json[i]) || typeof json[i] === 'object') { 
+            recurseAnd(json[i], callback); 
+        }
 
     }
 }
+
+
 
 function adjustImportances(input) {
 
@@ -239,3 +244,28 @@ function removeSkillLists(cv) {
 
 }
 
+function removeEmpty(cv) {
+
+    recurseAnd(cv, (obj) => {
+        let markedForDeletion = [];
+
+        for (let i in obj) {
+            if ((Array.isArray(obj[i]) && obj[i].length === 0)
+                || (typeof obj[i] === 'object' && Object.keys(obj[i]).length === 0)) {
+
+                if (Array.isArray(obj)) {
+                    markedForDeletion.push(i);
+                }
+                else if (typeof obj === 'object') {
+                    delete obj[i];
+                }
+            }
+        }
+
+        for (let i in markedForDeletion) {
+            obj.splice(markedForDeletion[markedForDeletion.length - 1 - i], 1);
+        }
+    }
+    )
+
+}

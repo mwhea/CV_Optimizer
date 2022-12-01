@@ -174,19 +174,6 @@ function inferSuperskill(skill, examples) {
     }
 }
 
-function recurseAnd(json, callback) {
-
-    callback(json)
-
-    for (let i in json) {
-
-        if (Array.isArray(json[i]) || typeof json[i] === 'object') { 
-            recurseAnd(json[i], callback); 
-        }
-
-    }
-}
-
 function tabulate(json) {
 
     let thisScore = 0;
@@ -216,6 +203,48 @@ function tabulate(json) {
     }
 
     return thisScore;
+}
+
+
+
+function recurseAnd(json, callback) {
+
+    callback(json)
+
+    for (let i in json) {
+
+        if (Array.isArray(json[i]) || typeof json[i] === 'object') { 
+            recurseAnd(json[i], callback); 
+        }
+
+    }
+}
+
+function sortSections(cv) {
+
+    recurseAnd(cv, (json) => {
+        if (Array.isArray(json) && json.length>0 && json[0].duration===undefined){
+            json.sort((a, b)=>{
+                let aOrdering = 0;
+                let bOrdering = 0;
+                if (a.order !== undefined) { aOrdering = parseInt(a.order); }
+                if (b.order !== undefined) { bOrdering = parseInt(b.order); }
+                if (a.order === undefined && b.order === undefined) {
+                    aOrdering = tabulate(a);
+                    bOrdering = tabulate(b);
+                }
+                else {
+                    aOrdering*=-1;
+                    bOrdering*=-1;
+                }
+                return (bOrdering - aOrdering);
+            })
+            for (let i in json) {
+                console.log(tabulate(json[i])+": "+json[i].description
+                );}
+        }
+    })
+
 }
 
 function removeUnpromisingCategories(input) {
@@ -341,18 +370,6 @@ function removeSkillLists(cv) {
 
     });
 
-
-}
-
-function sortSections(cv) {
-
-    recurseAnd(cv, (obj) => {
-        let tally = 0;
-
-        for (let i in obj) {
-
-        }
-    })
 
 }
 

@@ -21,9 +21,8 @@ Todo:
  -json
  -pdf
 */
-// const exportTo = "text";
+
 const exportTo = "json";
-// const exportTo = "pdf";
 
 let cv = await readFile(new URL(`./cv.json`, import.meta.url));
 cv = JSON.parse(cv);
@@ -42,6 +41,7 @@ extractSkill("Databases", ["SQL"]);
 extractSkill(".NET", [".NET"]);
 extractSkill("VMs", ["VM"]);
 extractSkill("Vim",["Vim ", "Vim, ", "Vim."]);
+extractSkill("Linux", ["RHEL"]);
 
 listing = listing.toString().toLowerCase();
 
@@ -93,6 +93,7 @@ inferSuperskill("shell scripting",["bash"]);
 inferSuperskill("Linux", ["bash"]);
 
 
+//Add a thing where if Typescript is a sought skill, replace every reference to Javascript
 
 // (string.search("java")!==-1 && string.search("javascript")===-1)
 // ){
@@ -107,18 +108,12 @@ for (let i in skillsSought) {
 
 
 adjustImportances(cv);
-
 removeOnes(cv);
-
 removeUnpromisingCategories(cv);
-
 sortSections(cv);
-
 removeEmpty(cv);
 convertObjectsToStrings(cv);
 
-
-//console.log(cv["Hard Skills"]["Networking"]);
 
 if (exportTo === "json") {
     await writeFile(`./Michael_Wheatley_CV.json`, JSON.stringify(cv));

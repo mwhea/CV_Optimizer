@@ -1,7 +1,8 @@
 {
     "Contact Info": {
         "name": "Michael Wheatley",
-        "github": "https://github.com/mwhea/"
+        "linkedin": "linkedin.com/in/mwhea",
+        "github": "https://github.com/mwhea"
     },
     "About Me": {},
     "Education": [
@@ -25,7 +26,7 @@
         "Programming Languages": [
             {
                 "name": "Java",
-                "importance": "5",
+                "importance": "3",
                 "skills demonstrated": [
                     "Java",
                     "C#",
@@ -34,7 +35,7 @@
             },
             {
                 "name": "C#",
-                "importance": "4",
+                "importance": "3",
                 "skills demonstrated": [
                     "Java",
                     "C#",
@@ -43,59 +44,77 @@
             },
             {
                 "name": "C",
-                "importance": "4",
+                "importance": "3",
                 "skills demonstrated": [
+                    "C",
                     "Low-Level"
                 ]
             },
             {
                 "name": "C++",
-                "importance": "4",
+                "importance": "3",
                 "skills demonstrated": [
+                    "C++",
                     "Low-Level"
                 ]
             },
             {
                 "name": "Javascript",
-                "importance": "4",
+                "importance": "3",
                 "skills demonstrated": [
+                    "Javascript",
                     "WebDev"
                 ]
             },
             {
                 "name": "Typescript",
-                "importance": "5",
+                "importance": "3",
                 "skills demonstrated": [
+                    "Typescript",
                     "WebDev"
                 ]
             },
             {
                 "name": "Assembly",
-                "importance": "3",
+                "importance": "1",
                 "skills demonstrated": [
-                    "Low-Level"
+                    "Low-Level",
+                    "Assembly"
                 ]
             },
             {
                 "name": "PHP",
-                "importance": "2",
+                "importance": "1",
                 "skills demonstrated": [
-                    "WebDev"
+                    "PHP"
                 ]
             }
         ],
         "Other Tools": [
             {
                 "name": "git",
-                "importance": "5"
+                "importance": "3",
+                "skills demonstrated": [
+                    "git"
+                ]
+            },
+            {
+                "name": "vim",
+                "importance": "1",
+                "skills demonstrated": [
+                    "Vim"
+                ]
             },
             {
                 "name": "grep",
-                "importance": "2"
+                "importance": "1",
+                "skills demonstrated": [
+                    "grep"
+                ]
             },
             {
                 "name": "Jira",
-                "importance": "4",
+                "importance": "3",
                 "skills demonstrated": [
                     "Teamwork",
                     "Jira"
@@ -103,15 +122,15 @@
             },
             {
                 "name": "Visual Studio",
-                "importance": "2"
+                "importance": "1"
             },
             {
                 "name": "Eclipse IDE",
-                "importance": "2"
+                "importance": "1"
             },
             {
                 "name": "VS Code",
-                "importance": "2",
+                "importance": "1",
                 "skills demonstrated": [
                     "Javascript",
                     "Typescript"
@@ -119,15 +138,16 @@
             },
             {
                 "name": "Microsoft Azure",
-                "importance": "3",
+                "importance": "1",
                 "skills demonstrated": [
                     ".NET",
-                    "Cloud"
+                    "Cloud",
+                    "Azure"
                 ]
             },
             {
                 "name": "VMWare Tools",
-                "importance": "2",
+                "importance": "1",
                 "skills demonstrated": [
                     "VMs"
                 ]
@@ -136,78 +156,97 @@
         "Web Development": [
             {
                 "name": "HTML5",
-                "importance": "4",
+                "importance": "2",
                 "skills demonstrated": [
-                    "WebDev"
+                    "WebDev",
+                    "HTML"
                 ]
             },
             {
                 "name": "CSS",
-                "importance": "4",
+                "importance": "2",
                 "skills demonstrated": [
-                    "WebDev"
+                    "WebDev",
+                    "CSS"
                 ]
             },
             {
                 "name": "React",
-                "importance": "4",
+                "importance": "3",
                 "skills demonstrated": [
-                    "WebDev"
+                    "WebDev",
+                    "React"
                 ]
             },
             {
                 "name": "NodeJS",
-                "importance": "5",
+                "importance": "3",
                 "skills demonstrated": [
-                    "WebDev"
+                    "WebDev",
+                    "NodeJS"
                 ]
             }
         ],
         "Operating Systems": [
             {
                 "name": "Shell scripting",
-                "importance": "3",
+                "importance": "2",
                 "skills demonstrated": [
-                    "Linux"
+                    "Linux",
+                    "bash",
+                    "shell scripting"
                 ]
             },
             {
                 "name": "Windows",
-                "importance": "3"
+                "importance": "2"
             },
             {
                 "name": "Linux",
-                "importance": "3",
+                "importance": "2",
                 "skills demonstrated": [
                     "Linux"
+                ]
+            },
+            
+            {
+                "name": "Neutrino RTOS",
+                "importance": "1",
+                "skills demonstrated": [
+                    "Neutrino",
+                    "RTOS",
+                    "Low-Level",
+                    "C"
                 ]
             }
         ],
         "Databases": [
             {
                 "name": "PostgreSQL",
-                "importance": "3",
+                "importance": "2",
                 "skills demonstrated": [
+                    "Postgre",
                     "Databases"
                 ]
             },
             {
                 "name": "MySQL",
-                "importance": "3",
+                "importance": "2",
                 "skills demonstrated": [
+                    "MySQL",
                     "Databases"
                 ]
             },
             {
                 "name": "Experience designing, building, maintaining and querying databases with SQL.",
-                "importance": "3",
+                "importance": "1",
                 "skills demonstrated": [
                     "Databases"
                 ]
             },
             {
                 "name": "In personal time, learned Java database connectivity and built a program employing it.",
-                "importance": "2",
+                "importance": "1",
                 "skills demonstrated": [
                     "Databases",
                     "Java"
@@ -235,66 +274,74 @@
         "Quick Learner": [
             {
                 "name": "Graduated with 3.98 GPA",
-                "importance": "5"
+                "importance": "3"
             }
         ],
         "Teamwork": [
             {
                 "name": "Identified priorities and assigned tasks.",
-                "importance": "3",
+                "importance": "2",
                 "skills demonstrated": [
                     "Teamwork"
                 ]
             },
             {
                 "name": "Scheduled meetings and managed time.",
-                "importance": "3",
+                "importance": "2",
                 "skills demonstrated": [
                     "Teamwork"
                 ]
             },
             {
                 "name": "All group projects have been graded A+",
-                "importance": "3",
+                "importance": "2",
                 "skills demonstrated": [
                     "Teamwork"
                 ]
             },
             {
-                "name": "Final group project placed third across entire STEM department (200$ prize)",
-                "importance": "3",
+                "name": "Final team project, a web app in React, placed third across entire STEM department (200$ prize)",
+                "importance": "2",
                 "skills demonstrated": [
-                    "Teamwork"
+                    "Teamwork",
+                    "React",
+                    "WebDev"
                 ]
             }
         ],
         "Problem Solving": [
             {
                 "name": "Won class challenge to implement final Assembly project with fewest machine instructions.",
-                "importance": "5",
+                "importance": "3",
                 "skills demonstrated": [
                     "Assembly"
                 ]
             },
             {
                 "name": "Have several times been recognized by an instructor as solving an assigned problem better than the answer key.",
-                "importance": "4"
+                "importance": "2"
             }
         ],
         "Time Management": [
             {
                 "name": "Maintained Dean’s Honours List as a first time father.",
-                "importance": "4"
+                "importance": "3",
+                "skills demonstrated": [
+                    "Time Management"
+                ]
             },
             {
                 "name": "Kept ahead of all assignment deadlines.",
-                "importance": "4"
+                "importance": "3",
+                "skills demonstrated": [
+                    "Time Management"
+                ]
             }
         ],
         "Communication": [
             {
                 "name": "Prior academic background in liberal arts and creative writing.",
-                "importance": "3",
+                "importance": "2",
                 "skills demonstrated": [
                     "Communication",
                     "Creativity"
@@ -302,14 +349,14 @@
             },
             {
                 "name": "Have edited essays and scientific manuscripts.",
-                "importance": "3",
+                "importance": "2",
                 "skills demonstrated": [
                     "Communication"
                 ]
             },
             {
                 "name": "Participate in regular meetings of several discussion and debate groups.",
-                "importance": "3",
+                "importance": "2",
                 "skills demonstrated": [
                     "Communication",
                     "Politics"
@@ -319,7 +366,7 @@
         "Other Qualifications": [
             {
                 "name": "Plays Kerbal Space Program.",
-                "importance": "3",
+                "importance": "1",
                 "skills demonstrated": [
                     "Space"
                 ]
@@ -330,50 +377,55 @@
         "Prediction Market Trading Bot": [
             {
                 "description": "Placed 1st in a trading bot programming contest ($500 prize)",
-                "importance": "5",
+                "importance": "3",
                 "skills demonstrated": [
                     "Finance",
                     "Javascript",
+                    "NodeJS",
                     "Typescript",
                     "Politics"
                 ]
             },
             {
                 "description": "Placed 8th ($250) competing with humans in a concurrent contest to predict grant awardees",
-                "importance": "5",
+                "importance": "3",
                 "skills demonstrated": [
                     "Finance",
                     "Javascript",
+                    "NodeJS",
                     "Typescript",
                     "Politics"
                 ]
             },
             {
                 "description": "The resultant bot is the #1 top performing user-created bot on the website and #6 trader in all-time profits",
-                "importance": "5",
+                "importance": "3",
                 "skills demonstrated": [
                     "Finance",
                     "Javascript",
+                    "NodeJS",
                     "Typescript",
                     "Politics"
                 ]
             },
             {
                 "description": "The code can be found at https://github.com/mwhea/Manifold_Trading_Bots",
-                "importance": "4",
+                "importance": "2",
                 "skills demonstrated": [
                     "Finance",
                     "Javascript",
+                    "NodeJS",
                     "Typescript",
                     "Politics"
                 ]
             },
             {
                 "description": "(manifold.markets is a forecasting website dedicated to scoring predictions of future events. Its market format enables traditional trading strategies such as market-making and arbitrage.)",
-                "importance": "4",
+                "importance": "3",
                 "skills demonstrated": [
                     "Finance",
                     "Javascript",
+                    "NodeJS",
                     "Typescript",
                     "Politics"
                 ]
@@ -382,27 +434,30 @@
         "CV Optimizer": [
             {
                 "description": "Reorganizes CV based on keywords in a job description",
-                "importance": "4",
+                "importance": "3",
                 "skills demonstrated": [
                     "Javascript",
+                    "NodeJS",
                     "Creativity",
                     "Humor"
                 ]
             },
             {
                 "description": "Takes as inputs a plaintext job posting and list of candidate skills & experience, and uses the Adobe Indesign scripting API (javascript based) to fill in the CV with only those skills which are most relevant to the listing.",
-                "importance": "4",
+                "importance": "3",
                 "skills demonstrated": [
                     "Javascript",
+                    "NodeJS",
                     "Creativity",
                     "Humor"
                 ]
             },
             {
                 "description": "The code can be found at https://github.com/mwhea/CV_Optimizer",
-                "importance": "4",
+                "importance": "3",
                 "skills demonstrated": [
                     "Javascript",
+                    "NodeJS",
                     "Creativity",
                     "Humor"
                 ]
@@ -417,7 +472,8 @@
             "duties": [
                 {
                     "description": "Investigated bugs in Nokia network equipment and management software.",
-                    "importance": "4",
+                    "importance": "3",
+                    "order": "-1",
                     "skills demonstrated": [
                         "Debugging",
                         "Networking"
@@ -425,8 +481,9 @@
                 },
                 {
                     "description": "Used RHEL virtual machines to simulate customer set-ups.",
-                    "importance": "4",
+                    "importance": "3",
                     "skills demonstrated": [
+                        "shell scripting",
                         "Linux",
                         "VMs",
                         "Networking"
@@ -450,9 +507,10 @@
             "duties": [
                 {
                     "description": "Built a web service and AJAX functionality to enable, on a Wordpress-based site, dynamic content drawn from the festival database.",
-                    "importance": "5",
+                    "importance": "3",
                     "skills demonstrated": [
                         "Web Services",
+                        "AJAX",
                         "Javascript",
                         "Wordpress",
                         "Databases",
@@ -461,7 +519,7 @@
                 },
                 {
                     "description": "Managed MySQL database as the organization transferred their data to a new platform.",
-                    "importance": "5",
+                    "importance": "3",
                     "skills demonstrated": [
                         "MySQL",
                         "Databases"
@@ -469,15 +527,15 @@
                 },
                 {
                     "description": "Used the expertise built up in the organization’s systems to assist other team members.",
-                    "importance": "2",
+                    "importance": "1",
                     "skills demonstrated": [
                         "Teamwork"
                     ]
                 },
                 {
                     "description": "Invited back to update and expand the work for the 2022 festival year.",
-                    "importance": "4",
-                    "order": "z",
+                    "importance": "3",
+                    "order": "5",
                     "skills demonstrated": [
                         "Web Services",
                         "Javascript",
@@ -537,19 +595,19 @@
             "duties": [
                 {
                     "description": "Writer for a digital collectible card game, including game content and promotional materials.",
-                    "importance": "5",
+                    "importance": "3",
                     "skills demonstrated": [
                         "Communication",
                         "GameDev"
                     ]
                 },
                 {
-                    "description": "Automated the assembly of card prototypes in Adobe InDesign using Data Merge, including automated typesetting with grep styles, and the processing of art assets with batch jobs in Photoshop.",
-                    "importance": "5"
+                    "description": "Automated the assembly of card prototypes in Adobe InDesign, including automated typesetting with grep styles, and the processing of art assets with Photoshop batch jobs.",
+                    "importance": "3"
                 },
                 {
                     "description": "Responsibilities were extended to leadership of game design, for which I completed a first pass on 200 cards within the first two months, and organized all office playtests",
-                    "importance": "5",
+                    "importance": "3",
                     "skills demonstrated": [
                         "GameDev"
                     ]
@@ -581,7 +639,7 @@
             "title": "The Plagiarist",
             "publisher": "Bards and Sages Quarterly",
             "date": "January 2020",
-            "importance": "4",
+            "importance": "2",
             "skills demonstrated": [
                 "Communication",
                 "Creativity"

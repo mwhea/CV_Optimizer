@@ -105,19 +105,24 @@ for (let i in skillsSought) {
     console.log(skillsSought[i]);
 }
 
+
 adjustImportances(cv);
 
-convertObjectsToStrings(cv);
+removeOnes(cv);
+
+removeUnpromisingCategories(cv);
+
+sortSections(cv);
 
 removeEmpty(cv);
+convertObjectsToStrings(cv);
 
-console.log(cv["Hard Skills"]["Networking"]);
+
+//console.log(cv["Hard Skills"]["Networking"]);
 
 if (exportTo === "json") {
     await writeFile(`./Michael_Wheatley_CV.json`, JSON.stringify(cv));
 }
-
-while (1);
 
 
 function extractSkill(skill, searchStrings) {
@@ -167,9 +172,7 @@ function inferSuperskill(skill, examples) {
             }
         }
     }
-
 }
-
 
 function recurseAnd(json, callback) {
 
@@ -184,6 +187,77 @@ function recurseAnd(json, callback) {
     }
 }
 
+function tabulate(json) {
+
+    let thisScore = 0;
+    
+    if (json.importance!==undefined){
+        return parseInt(json.importance);
+    }
+
+    for (let i in json) {
+
+        if (Array.isArray(json[i]) || typeof json[i] === 'object') { 
+            
+            let score=parseInt(tabulate(json[i])); 
+            if(score>thisScore){thisScore=score;}
+        }
+
+    }
+
+    for (let i in json) {
+
+        if (Array.isArray(json[i]) || typeof json[i] === 'object') { 
+            
+            let score=parseInt(tabulate(json[i])); 
+            if(score>=3){thisScore++;}
+        }
+
+    }
+
+    return thisScore;
+}
+
+function removeUnpromisingCategories(input) {
+
+    recurseAnd(input, (obj) => {
+
+        let isSupercategory = true;
+        for (let i in obj) {
+            if (obj[i].importance!==undefined || obj[i].duties!==undefined ){
+                isSupercategory=false;
+            }
+        }
+        if (isSupercategory) {
+            for (let i in obj) {
+                if (tabulate(obj[i]) > 0) {
+                    obj[i] = ruc(obj[i]);
+                }
+            }
+        }
+    }
+    )
+}
+
+function ruc(obj){
+    if (Array.isArray(obj)) {
+        let newArr = obj.filter(
+            (e) => {
+                return (tabulate(e) > 2);
+            }
+        );
+        obj = newArr.splice(0, newArr.length);
+        
+    }
+    else if (typeof obj === 'object') {
+        for (let i in obj) {
+            if (tabulate(obj[i]) < 3) {
+                delete obj[i];
+            }
+        }
+    }
+    return obj;
+}
 
 
 function adjustImportances(input) {
@@ -202,30 +276,21 @@ function adjustImportances(input) {
         }
         if (anySkills === true) {
 
-            obj["importance"] = parseInt(obj["importance"]) + 2;
+            obj["importance"] = parseInt(obj["importance"]) + 1;
         }
 
     });
 }
 
-function convertObjectsToStrings(cv) {
+function removeOnes(cv){
     recurseAnd(cv, (obj) => {
-
         let markedForDeletion = [];
         //let len = 
         for (let i in obj) {
 
             if (obj[i].importance === undefined) {
             }
-            else if (obj[i].importance >= 3) {
-                if (obj[i].name !== undefined) {
-                    obj[i] = obj[i].name;
-                }
-                else if (obj[i].description !== undefined) {
-                    obj[i] = obj[i].description;
-                }
-            }
-            else if (obj[i].importance < 3) {
+            else if (obj[i].importance < 2) {
                 if (Array.isArray(obj)) {
                     markedForDeletion.push(i);
                 }
@@ -237,9 +302,32 @@ function convertObjectsToStrings(cv) {
             obj.splice(markedForDeletion[markedForDeletion.length - 1 - i], 1);
         }
         return false;
+    }
+    )
+}
+
+function convertObjectsToStrings(cv) {
+    recurseAnd(cv, (obj) => {
+
+        //let len = 
+        for (let i in obj) {
+
+            if (obj[i].importance === undefined) {
+            }
+            else {
+                if (obj[i].name !== undefined) {
+                    obj[i] = obj[i].name;
+                }
+                else if (obj[i].description !== undefined) {
+                    obj[i] = obj[i].description;
+                }
+            }
+        }
+        return false;
 
     });
 }
+
 function removeSkillLists(cv) {
 
     recurseAnd(cv, (obj) => {
@@ -253,6 +341,18 @@ function removeSkillLists(cv) {
 
     });
 
+
+}
+
+function sortSections(cv) {
+
+    recurseAnd(cv, (obj) => {
+        let tally = 0;
+
+        for (let i in obj) {
+
+        }
+    })
 
 }
 

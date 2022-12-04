@@ -42,7 +42,12 @@ for (let i in skillsSought) {
 }
 
 adjustImportances(cv);
-removeOnes(cv);
+console.log(cv["Relevant Experience"][0])
+console.log("is Databases a category? "+isCategory(cv["Hard Skills"]["Databases"]));
+console.log("is MySQL a category? "+isCategory(cv["Hard Skills"]["Databases"][1]));
+console.log("are jobs a supercategory? "+isSupercategory(cv["Relevant Experience"][0]));
+console.log("are jobs a supercategory? "+isSupercategory(cv["Relevant Experience"]));
+console.log("are jobs a supercategory? "+isSupercategory(cv));
 removeUnpromisingCategories(cv);
 removeOnes(cv);
 sortSections(cv);
@@ -244,52 +249,94 @@ function sortSections(cv) {
                 }
                 return (bOrdering - aOrdering);
             })
-            for (let i in json) {
-                console.log(tabulate(json[i])+": "+json[i].description
-                );}
+            // for (let i in json) {
+            //     console.log(tabulate(json[i])+": "+json[i].description
+            //     );}
         }
     })
 
+}
+
+function isCategory(obj) {
+ if (obj.name === "MySQL"){
+    console.log(`${obj.importance === undefined && tabulate(obj) > 0} || ${(obj.duties === undefined && tabulate(obj) > 0)}`)
+ }
+    return ((obj.importance === undefined && obj.duties === undefined) && tabulate(obj) > 0)
+
+}
+
+function isSupercategory(obj) {
+    let isSupercategory = true;
+    if (Array.isArray(obj)) {
+        isSupercategory = obj.reduce((isCat, o) => {
+            if (isCategory(o)) {
+                console.log(o.importance+", "+o.duties+", "+tabulate(o))
+                isCat = true;
+            }
+            return isCat;
+        }, false)
+
+    }
+
+    else {
+        const keys = Object.keys(obj);
+        if (keys.length === 0) { return false; }
+        keys.forEach((i) => {
+            // if (i === "Communication") {
+            //     console.log();
+            // }
+            if (obj[i].importance !== undefined || obj[i].duties !== undefined || tabulate(obj[i]) === 0) {
+                isSupercategory = false;
+            }
+        });
+    }
+    return isSupercategory;
 }
 
 function removeUnpromisingCategories(input) {
 
     recurseAnd(input, (obj) => {
 
-        let isSupercategory = true;
-        for (let i in obj) {
-            if (obj[i].importance!==undefined || obj[i].duties!==undefined ){
-                isSupercategory=false;
-            }
-        }
-        if (isSupercategory) {
+        if (isSupercategory(obj)) {
+
+            console.group("Categories:");
             for (let i in obj) {
-                if (tabulate(obj[i]) > 0) {
-                    obj[i] = ruc(obj[i]);
+                if (isCategory(obj[i])){
+                        console.log(obj[i].name + "/" + obj[i].position)
                 }
+               // console.log(obj[i]);
             }
+            console.groupEnd();
+
+            obj = ruc(obj);
         }
-    }
-    )
+        
+    })
 }
 
 function ruc(obj){
     if (Array.isArray(obj)) {
         let newArr = obj.filter(
             (e) => {
-                return (tabulate(e) > 2);
+                return (!isCategory(e) || tabulate(e) > 2);
             }
         );
         obj = newArr.splice(0, newArr.length);
         
     }
     else if (typeof obj === 'object') {
-        for (let i in obj) {
-            if (tabulate(obj[i]) < 3) {
-                delete obj[i];
+
+        const keys = Object.keys(obj);
+
+        // Iterate over the own properties of the object.
+        keys.forEach((key) => {
+            
+            if (isCategory(obj[key]) && tabulate(obj[key]) < 3) {
+                delete obj[key];
             }
-        }
+        });
     }
+   // console.log(obj);
     return obj;
 }
 

@@ -28,97 +28,104 @@ let cv = await readFile(new URL(`./cv.json`, import.meta.url));
 cv = JSON.parse(cv);
 
 let listing = await readFile(new URL(`./Job_Listing/job.txt`, import.meta.url));
+listing = listing.toString().replace(/(\r\n|\n|\r)/gm, " ");
 
 let skillsSought = [];
 
-listing = listing.toString().replace(/(\r\n|\n|\r)/gm, " ");
-
-//A few need case to be sure, but for the rest we're going to check later with all-lowercase
-extractSkill("React", ["React"]);
-extractSkill("AWS", ["AWS"]);
-extractSkill("Azure", ["Azure"]);
-extractSkill("Databases", ["SQL"]);
-extractSkill(".NET", [".NET"]);
-extractSkill("VMs", ["VM"]);
-extractSkill("Vim",["Vim ", "Vim, ", "Vim."]);
-extractSkill("Linux", ["RHEL"]);
-
-listing = listing.toString().toLowerCase();
-
-//specific
-extractSkill(".NET", ["asp.net"]);
-extractSkill("Java", [" java ", "java, ", "java."]);
-extractSkill("React", ["reactjs", "react, "]);
-extractSkill("Javascript", ["javascript"]);
-extractSkill("Typescript", ["typescript"]);
-extractSkill("Tailwind", ["tailwind"]);
-extractSkill("Bootstrap", ["bootstrap"]);
-extractSkill("Angular", ["angular"]);
-extractSkill("C", [" c ", " c,"]);
-extractSkill("C++", ["c++"]);
-extractSkill("C#", ["c#"]);
-extractSkill("Jira", ["jira"]);
-extractSkill("NodeJS", ["nodejs", " node"]);
-extractSkill("Linux", ["linux"]);
-extractSkill("Docker", ["docker"]);
-extractSkill("Wireshark", ["wireshark"]);
-extractSkill("git", ["git", "version control"]);
-extractSkill("Vim",[" vim ", " vim,", " vim."]);
-extractSkill("Linux", ["Linux"]);
-extractSkill("bash",[" bash"]);
-extractSkill("shell scripting",["powershell", "command line", "scripting"]);
-
-
-//broad
-extractSkill("Cloud", ["cloud"]);
-extractSkill("Humor", [" fun ", " fun, ", " fun. ", "humour", "humor"]);
-extractSkill("Space", ["satellite", "rocket", "launch"]);
-extractSkill("Teamwork", ["jira", "collabor"]);
-extractSkill("Networking", ["osi model", "networks"]);
-extractSkill("GameDev", ["game dev", "games"]);
-extractSkill("WebDev", ["web deve", "front end", "frontend", "front-end"]);
-extractSkill("Low-Level", ["systems program"]);
-extractSkill("Creativity", ["creativ"]);
-
-//Add skills which are siblings of related skills
-//addSiblings("Java", "C#");
-
-//Infer skills which are supersets of other skills"
-inferSuperskill("Cloud", ["AWS", "Azure"]);
-inferSuperskill("Networking", ["Wireshark"]);
-inferSuperskill("FrontEnd", ["Tailwind"], ["Bootstrap"], ["CSS"]);
-inferSuperskill("WebDev", ["Javascript", "Typescript", "CSS", "HTML", "React", "Angular", "Tailwind"]);
-inferSuperskill("Low-Level", ["C", "C++", "Assembly"]);
-inferSuperskill("shell scripting",["bash"]);
-inferSuperskill("Linux", ["bash"]);
-
-
-//Add a thing where if Typescript is a sought skill, replace every reference to Javascript
-
-// (string.search("java")!==-1 && string.search("javascript")===-1)
-// ){
-//     skillsSought.push("Java");
-// }
-
+extractSkills(listing);
 
 console.log("Extracted skills from listing:");
 for (let i in skillsSought) {
     console.log(skillsSought[i]);
 }
 
-
 adjustImportances(cv);
 removeOnes(cv);
 removeUnpromisingCategories(cv);
+removeOnes(cv);
 sortSections(cv);
 removeEmpty(cv);
 convertObjectsToStrings(cv);
 
 
-if (exportTo === "json") {
-    await writeFile(`./Michael_Wheatley_CV.json`, JSON.stringify(cv));
-}
 
+await writeFile(`./Michael_Wheatley_CV.json`, JSON.stringify(cv));
+
+
+
+
+function extractSkills(listing) {
+
+    //A few need case to be sure, but for the rest we're going to check later with all-lowercase
+    extractSkill("React", ["React"]);
+    extractSkill("AWS", ["AWS"]);
+    extractSkill("Azure", ["Azure"]);
+    extractSkill("Databases", ["SQL"]);
+    extractSkill(".NET", [".NET"]);
+    extractSkill("VMs", ["VM"]);
+    extractSkill("Vim",["Vim ", "Vim, ", "Vim."]);
+    extractSkill("Linux", ["RHEL"]);
+
+    listing = listing.toString().toLowerCase();
+
+    //specific
+    extractSkill(".NET", ["asp.net"]);
+    extractSkill("Java", [" java ", "java, ", "java."]);
+    extractSkill("React", ["reactjs", "react, "]);
+    extractSkill("Javascript", ["javascript"]);
+    extractSkill("Typescript", ["typescript"]);
+    extractSkill("Tailwind", ["tailwind"]);
+    extractSkill("Bootstrap", ["bootstrap"]);
+    extractSkill("Angular", ["angular"]);
+    extractSkill("C", [" c ", " c,"]);
+    extractSkill("C++", ["c++"]);
+    extractSkill("C#", ["c#"]);
+    extractSkill("Jira", ["jira"]);
+    extractSkill("NodeJS", ["nodejs", " node"]);
+    extractSkill("Linux", ["linux"]);
+    extractSkill("Docker", ["docker"]);
+    extractSkill("Wireshark", ["wireshark"]);
+    extractSkill("git", ["git", "version control"]);
+    extractSkill("Vim",[" vim ", " vim,", " vim."]);
+    extractSkill("Linux", ["Linux"]);
+    extractSkill("bash",[" bash"]);
+    extractSkill("grep",["grepping", "grep for"]);
+    extractSkill("Wordpress",["wordpress"]);
+    extractSkill("shell scripting",["powershell", "command line", "scripting"]);
+
+    //broad
+    extractSkill("Cloud", ["cloud"]);
+    extractSkill("Humor", [" fun ", " fun, ", " fun. ", "humour", "humor"]);
+    extractSkill("Space", ["satellite", "rocket", "launch"]);
+    extractSkill("Teamwork", ["jira", "collabor"]);
+    extractSkill("Networking", ["osi model", "networks"]);
+    extractSkill("GameDev", ["game dev", "games"]);
+    extractSkill("WebDev", ["web deve", "front end", "frontend", "front-end"]);
+    extractSkill("Low-Level", ["systems program"]);
+    extractSkill("Creativity", ["creativ"]);
+
+    //Add skills which are siblings of related skills
+    //addSiblings("Java", "C#");
+
+    //Infer skills which are supersets of other skills"
+    inferSuperskill("Cloud", ["AWS", "Azure"]);
+    inferSuperskill("Networking", ["Wireshark"]);
+    inferSuperskill("FrontEnd", ["Tailwind"], ["Bootstrap"], ["CSS"]);
+    inferSuperskill("WebDev", ["Javascript", "Typescript", "CSS", "HTML", "React", "Angular", "Tailwind"]);
+    inferSuperskill("Low-Level", ["C", "C++", "Assembly"]);
+    inferSuperskill("shell scripting",["bash"]);
+    inferSuperskill("Linux", ["bash"]);
+
+    //Add a thing where if Typescript is a sought skill, replace every reference to Javascript
+
+    // (string.search("java")!==-1 && string.search("javascript")===-1)
+    // ){
+    //     skillsSought.push("Java");
+    // }
+
+    return skillsSought;
+
+}
 
 function extractSkill(skill, searchStrings) {
     if (skillsSought.find((s) => s === skill) !== undefined) {

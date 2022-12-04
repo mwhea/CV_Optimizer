@@ -23,6 +23,8 @@ Todo:
 */
 
 const exportTo = "json";
+let recursionDepth = 0;
+let textString = "";
 
 let cv = await readFile(new URL(`./cv.json`, import.meta.url));
 cv = JSON.parse(cv);
@@ -48,9 +50,9 @@ removeEmpty(cv);
 convertObjectsToStrings(cv);
 
 
-
+convertToText(cv);
 await writeFile(`./Michael_Wheatley_CV.json`, JSON.stringify(cv));
-
+await writeFile(`./Michael_Wheatley_CV.txt`, textString);
 
 
 
@@ -211,14 +213,15 @@ function tabulate(json) {
 
 function recurseAnd(json, callback) {
 
+
     callback(json)
 
     for (let i in json) {
-
+        recursionDepth++;
         if (Array.isArray(json[i]) || typeof json[i] === 'object') { 
             recurseAnd(json[i], callback); 
         }
-
+        recursionDepth--;
     }
 }
 
@@ -357,6 +360,21 @@ function convertObjectsToStrings(cv) {
         return false;
 
     });
+}
+
+function convertToText(cv){
+
+    recurseAnd(cv, (obj) => {
+        for (let i in obj) {
+            if (!Array.isArray(obj[i])){
+            for(let j = 0; j<recursionDepth; j++){
+                textString +='  '
+            }
+            textString += obj[i] + '\n';
+        }
+        }
+    });
+
 }
 
 function removeSkillLists(cv) {

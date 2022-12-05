@@ -203,20 +203,55 @@ export function convertObjectsToStrings(cv) {
     });
 }
 
-export function convertToText(cv){
-    textString="";
+function getIndent(){
+    let textString = "";
+    for (let j = 0; j < recursionDepth; j++) {
+        textString += ' '
+    }
+    return textString
+}
 
-    recurseAnd(cv, (obj) => {
+export function convertToText(obj, rFactor){
+    recursionDepth+=rFactor;
+    let textString="";
+    
+    if (Array.isArray(obj)){
         for (let i in obj) {
-            if (!Array.isArray(obj[i])){
-            for(let j = 0; j<recursionDepth; j++){
-                textString +='  '
-            }
-            textString += obj[i] + '\n';
+            textString += convertToText(obj[i], 0);
         }
-        }
-    });
+        textString += '\n'
+    }
+    else if (typeof obj==="object"){
 
+        let keys = Object.keys(obj);
+
+        if (keys.length===0){
+            textString += getIndent()+obj[k];
+            textString += '\n'
+        } else {
+
+            keys.forEach((k) => {
+
+                if (typeof (obj[k]) === "object" || typeof (obj[k]) === "array") {
+                    textString += getIndent() + "[" + k + "]\n"
+                    textString += convertToText(obj[k], 2);
+                }
+                else {
+                    textString += convertToText(obj[k], 0);
+                }
+
+            });
+        }
+
+    }
+    else {
+        for (let j = 0; j < recursionDepth; j++) {
+            textString += '  '
+        }
+        textString= getIndent()+obj + '\n'
+    }
+
+    recursionDepth-=rFactor;
     return textString;
 
 }

@@ -45,7 +45,7 @@ removeOnes(cv);
 removeEmpty(cv);
 convertObjectsToStrings(cv);
 
-textString = convertToText(cv);
+textString = convertToText(cv, 0);
 await writeFile(`./${(cv["Contact Info"].name).replace(" ", "_")}_CV.json`, JSON.stringify(cv));
 await writeFile(`./${(cv["Contact Info"].name).replace(" ", "_")}_CV.txt`, textString);
 

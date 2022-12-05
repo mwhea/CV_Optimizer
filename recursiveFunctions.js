@@ -211,47 +211,77 @@ function getIndent(){
     return textString
 }
 
-export function convertToText(obj, rFactor){
-    recursionDepth+=rFactor;
-    let textString="";
-    
-    if (Array.isArray(obj)){
-        for (let i in obj) {
-            textString += convertToText(obj[i], 0);
-        }
-        textString += '\n'
+function isBottom(obj) {
+    if (typeof (obj) === "string") {
+        return true;
     }
-    else if (typeof obj==="object"){
+    else if (typeof (obj) === "object") {
+
+        for (let i in obj) {
+
+            if (typeof (obj[i]) === "string") {
+                return true
+            }
+        }
+        return false;
+    }
+    if (Array.isArray(obj)) {
+
+        if (typeof (obj[i]) === "string") {
+            return true
+        }
+    
+        return false;
+    }
+}
+
+export function convertToText(obj, rFactor){
+    let prefix=rFactor;
+    let textString="";
+
+    if (Array.isArray(obj) && isBottom(obj)) {
+        for (let i in obj) {
+            textString += prefix + "-" + obj[i] + '\n';
+        }
+    }
+    else if (typeof (obj) === "object" && isBottom(obj)) {
+        let keys = Object.keys(obj);
+
+        keys.forEach((k) => {
+            if (Array.isArray(obj[k])) {
+                textString += convertToText(obj[k], prefix+"  ")
+            } else {
+                textString += prefix + obj[k] + '\n';
+            }
+        })
+
+        textString+='\n'
+    }
+    else {
 
         let keys = Object.keys(obj);
 
-        if (keys.length===0){
-            textString += getIndent()+obj[k];
-            textString += '\n'
-        } else {
+        keys.forEach((k) => {
 
-            keys.forEach((k) => {
-
-                if (typeof (obj[k]) === "object" || typeof (obj[k]) === "array") {
-                    textString += getIndent() + "[" + k + "]\n"
-                    textString += convertToText(obj[k], 2);
+            if (typeof (obj[k]) === "object" || Array.isArray(obj[k])) {
+                if (!Array.isArray(obj)) {
+                    if (prefix === "") { textString += prefix + "[" + k + "]\n\n" }
+                    else {
+                        textString += prefix + k + "\n"
+                    }
                 }
-                else {
-                    textString += convertToText(obj[k], 0);
+                if (Array.isArray(obj[k]) && !isBottom(obj[k])) {
+                    textString += convertToText(obj[k], prefix + "")
+                } else {
+                    textString += convertToText(obj[k], prefix + "  ")
                 }
+                if (isBottom(obj[k]) && Array.isArray(obj[k])) { textString += "\n" }
+            }
 
-            });
-        }
 
-    }
-    else {
-        for (let j = 0; j < recursionDepth; j++) {
-            textString += '  '
-        }
-        textString= getIndent()+obj + '\n'
+        });
     }
 
-    recursionDepth-=rFactor;
     return textString;
 
 }

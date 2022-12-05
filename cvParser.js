@@ -1,11 +1,4 @@
 import {
-    renameSync,
-    statSync,
-    existsSync,
-    realpathSync
-} from 'fs';
-
-import {
     readFile,
     writeFile
 } from 'fs/promises';

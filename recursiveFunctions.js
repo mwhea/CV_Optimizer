@@ -64,9 +64,7 @@ export function sortSections(cv) {
                 }
                 return (bOrdering - aOrdering);
             })
-            // for (let i in json) {
-            //     console.log(tabulate(json[i])+": "+json[i].description
-            //     );}
+            
         }
     })
 
@@ -117,10 +115,7 @@ export function removeUnpromisingCategories(input) {
                         obj.splice(i, 1); 
                         i--;
                     }
-                }
-                // obj = obj.filter((o)=>{
-                //     return (isCategory(o) && tabulate(o) < 3);})
-        
+                }        
             }
             else if (typeof obj === 'object') {
         
@@ -138,8 +133,6 @@ export function removeUnpromisingCategories(input) {
         
     })
 }
-
-
 
 export function adjustImportances(input, skills) {
 
@@ -168,7 +161,7 @@ export function adjustImportances(input, skills) {
 export function removeOnes(cv){
     recurseAnd(cv, (obj) => {
         let markedForDeletion = [];
-        //let len = 
+
         for (let i in obj) {
 
             if (obj[i].importance === undefined) {
@@ -192,7 +185,6 @@ export function removeOnes(cv){
 export function convertObjectsToStrings(cv) {
     recurseAnd(cv, (obj) => {
 
-        //let len = 
         for (let i in obj) {
 
             if (obj[i].importance === undefined) {
@@ -241,7 +233,6 @@ export function removeSkillLists(cv) {
         }
 
     });
-
 
 }
 

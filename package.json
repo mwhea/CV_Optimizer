@@ -1,0 +1,24 @@
+{
+  "type":"module",
+  "name": "resume_script",
+  "description": "This program converts a cv in json format to a CV tailored to specific job listings.",
+  "version": "1.0.0",
+  "main": "cvParser.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mwhea/CV_Optimizer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mwhea/CV_Optimizer/issues"
+  },
+  "homepage": "https://github.com/mwhea/CV_Optimizer#readme",
+  "dependencies": {
+    "jest": "^29.3.1"
+  }
+}

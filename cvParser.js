@@ -20,8 +20,6 @@ import {
     removeUnpromisingCategories
 } from './recursiveFunctions.js'
 
-
-
 /*
 Todo:
     edit linkedin
@@ -44,22 +42,15 @@ cv = JSON.parse(cv);
 let listing = await readFile(new URL(`./Job_Listing/job.txt`, import.meta.url));
 listing = listing.toString().replace(/(\r\n|\n|\r)/gm, " ");
 
-
-
-extractSkills(listing);
-
 console.log("Extracted skills from listing:");
-for (let i in skillsSought) {
-    console.log(skillsSought[i]);
-}
+extractSkills(listing);
 
 adjustImportances(cv, skillsSought);
 removeUnpromisingCategories(cv);
-removeOnes(cv);
 sortSections(cv);
+removeOnes(cv);
 removeEmpty(cv);
 convertObjectsToStrings(cv);
-
 
 textString = convertToText(cv);
 await writeFile(`./${(cv["Contact Info"].name).replace(" ", "_")}_CV.json`, JSON.stringify(cv));

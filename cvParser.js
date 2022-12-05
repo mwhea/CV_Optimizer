@@ -62,10 +62,8 @@ convertObjectsToStrings(cv);
 
 
 textString = convertToText(cv);
-await writeFile(`./Michael_Wheatley_CV.json`, JSON.stringify(cv));
-await writeFile(`./Michael_Wheatley_CV.txt`, textString);
-
-
+await writeFile(`./${(cv["Contact Info"].name).replace(" ", "_")}_CV.json`, JSON.stringify(cv));
+await writeFile(`./${(cv["Contact Info"].name).replace(" ", "_")}_CV.txt`, textString);
 
 function extractSkills(listing) {
 

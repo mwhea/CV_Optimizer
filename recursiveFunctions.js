@@ -1,12 +1,12 @@
 
-import {skillsSought} from './cvParser.js'
-
 let recursionDepth = 0;
 let textString = "";
+let skillsSought = [];
 
-function tabulate(json) {
+export function tabulate(json) {
 
     let thisScore = 0;
+    let scorers = 0;
     
     if (json.importance!==undefined){
         return parseInt(json.importance);
@@ -17,20 +17,15 @@ function tabulate(json) {
         if (Array.isArray(json[i]) || typeof json[i] === 'object') { 
             
             let score=parseInt(tabulate(json[i])); 
-            if(score>thisScore){thisScore=score;}
+            if (score>=3){scorers++}
+            if(score>thisScore){
+                thisScore=score;
+            }
         }
 
     }
 
-    for (let i in json) {
-
-        if (Array.isArray(json[i]) || typeof json[i] === 'object') { 
-            
-            let score=parseInt(tabulate(json[i])); 
-            if(score>=3){thisScore++;}
-        }
-
-    }
+    if (scorers>1){thisScore += (scorers-1);}
 
     return thisScore;
 }
@@ -77,20 +72,19 @@ export function sortSections(cv) {
 
 }
 
-function isCategory(obj) {
- if (obj.name === "MySQL"){
-    console.log(`${obj.importance === undefined && tabulate(obj) > 0} || ${(obj.duties === undefined && tabulate(obj) > 0)}`)
- }
-    return ((obj.importance === undefined && obj.duties === undefined) && tabulate(obj) > 0)
+export function isCategory(obj) {
+
+    if (tabulate(obj) <= 0){return false;}
+    if (obj.importance !== undefined){return false;}
+    return true;
 
 }
 
-function isSupercategory(obj) {
-    let isSupercategory = true;
+export function isSupercategory(obj) {
+    let isSupercategory = false;
     if (Array.isArray(obj)) {
         isSupercategory = obj.reduce((isCat, o) => {
             if (isCategory(o)) {
-                console.log(o.importance+", "+o.duties+", "+tabulate(o))
                 isCat = true;
             }
             return isCat;
@@ -102,11 +96,8 @@ function isSupercategory(obj) {
         const keys = Object.keys(obj);
         if (keys.length === 0) { return false; }
         keys.forEach((i) => {
-            // if (i === "Communication") {
-            //     console.log();
-            // }
-            if (obj[i].importance !== undefined || obj[i].duties !== undefined || tabulate(obj[i]) === 0) {
-                isSupercategory = false;
+            if (isCategory(obj[i]) && i!=="duties") {
+                isSupercategory = true;
             }
         });
     }
@@ -119,49 +110,40 @@ export function removeUnpromisingCategories(input) {
 
         if (isSupercategory(obj)) {
 
-            console.group("Categories:");
-            for (let i in obj) {
-                if (isCategory(obj[i])){
-                        console.log(obj[i].name + "/" + obj[i].position)
+            if (Array.isArray(obj)) {
+                for (let i = 0; i<obj.length; i++){
+                    
+                    if (isCategory(obj[i]) && tabulate(obj[i]) < 3) {
+                        obj.splice(i, 1); 
+                        i--;
+                    }
                 }
-               // console.log(obj[i]);
+                // obj = obj.filter((o)=>{
+                //     return (isCategory(o) && tabulate(o) < 3);})
+        
             }
-            console.groupEnd();
-
-            obj = ruc(obj);
+            else if (typeof obj === 'object') {
+        
+                const keys = Object.keys(obj);
+        
+                // Iterate over the own properties of the object.
+                keys.forEach((key) => {
+                    
+                    if (isCategory(obj[key]) && tabulate(obj[key]) < 3) {
+                        delete obj[key];
+                    }
+                });
+            }
         }
         
     })
 }
 
-function ruc(obj){
-    if (Array.isArray(obj)) {
-        let newArr = obj.filter(
-            (e) => {
-                return (!isCategory(e) || tabulate(e) > 2);
-            }
-        );
-        obj = newArr.splice(0, newArr.length);
-        
-    }
-    else if (typeof obj === 'object') {
-
-        const keys = Object.keys(obj);
-
-        // Iterate over the own properties of the object.
-        keys.forEach((key) => {
-            
-            if (isCategory(obj[key]) && tabulate(obj[key]) < 3) {
-                delete obj[key];
-            }
-        });
-    }
-   // console.log(obj);
-    return obj;
-}
 
 
-export function adjustImportances(input) {
+export function adjustImportances(input, skills) {
+
+    skillsSought = skills;
 
     recurseAnd(input, (obj) => {
 
@@ -287,3 +269,4 @@ export function removeEmpty(cv) {
     }
     )
 }
+

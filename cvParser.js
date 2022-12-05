@@ -35,7 +35,7 @@ Todo:
 */
 
 const exportTo = "json";
-export let skillsSought = [];
+let skillsSought = [];
 let textString = "";
 
 let cv = await readFile(new URL(`./cv.json`, import.meta.url));
@@ -53,7 +53,7 @@ for (let i in skillsSought) {
     console.log(skillsSought[i]);
 }
 
-adjustImportances(cv);
+adjustImportances(cv, skillsSought);
 removeUnpromisingCategories(cv);
 removeOnes(cv);
 sortSections(cv);

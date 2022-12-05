@@ -68,11 +68,11 @@ await writeFile(`./${(cv["Contact Info"].name).replace(" ", "_")}_CV.txt`, textS
 function extractSkills(listing) {
 
     //A few need case to be sure, but for the rest we're going to check later with all-lowercase
-    extractSkill("React", ["React"]);
+    extractSkill(".NET", [".NET"]);
     extractSkill("AWS", ["AWS"]);
     extractSkill("Azure", ["Azure"]);
     extractSkill("Databases", ["SQL"]);
-    extractSkill(".NET", [".NET"]);
+    extractSkill("React", ["React"]);
     extractSkill("VMs", ["VM"]);
     extractSkill("Vim",["Vim ", "Vim, ", "Vim."]);
     extractSkill("Linux", ["RHEL"]);
@@ -81,35 +81,38 @@ function extractSkills(listing) {
 
     //specific
     extractSkill(".NET", ["asp.net"]);
-    extractSkill("Java", [" java ", "java, ", "java."]);
-    extractSkill("React", ["reactjs", "react, "]);
-    extractSkill("Javascript", ["javascript"]);
-    extractSkill("Typescript", ["typescript"]);
-    extractSkill("Tailwind", ["tailwind"]);
-    extractSkill("Bootstrap", ["bootstrap"]);
     extractSkill("Angular", ["angular"]);
+    extractSkill("bash",[" bash"]);
+    extractSkill("Bootstrap", ["bootstrap"]);
     extractSkill("C", [" c ", " c,"]);
     extractSkill("C++", ["c++"]);
     extractSkill("C#", ["c#"]);
-    extractSkill("Jira", ["jira"]);
-    extractSkill("NodeJS", ["nodejs", " node"]);
-    extractSkill("Linux", ["linux"]);
     extractSkill("Docker", ["docker"]);
-    extractSkill("Wireshark", ["wireshark"]);
+    extractSkill("Eclipse", ["eclipse"]);
     extractSkill("git", ["git", "version control"]);
-    extractSkill("Vim",[" vim ", " vim,", " vim."]);
-    extractSkill("Linux", ["Linux"]);
-    extractSkill("bash",[" bash"]);
     extractSkill("grep",["grepping", "grep for"]);
-    extractSkill("Wordpress",["wordpress"]);
+    extractSkill("Java", [" java ", "java, ", "java."]);
+    extractSkill("Javascript", ["javascript"]);
+    extractSkill("Jira", ["jira"]);
+    extractSkill("Kubernetes", ["kubernetes"]);
+    extractSkill("Linux", ["linux"]);
+    extractSkill("NodeJS", ["nodejs", " node"]);
+    extractSkill("React", ["reactjs", "react, "]);
     extractSkill("shell scripting",["powershell", "command line", "scripting"]);
+    extractSkill("Typescript", ["typescript"]);
+    extractSkill("Tailwind", ["tailwind"]);
+    extractSkill("Vim",[" vim ", " vim,", " vim."]);
+    extractSkill("VS Code",["vs code"]);
+    extractSkill("Visual Studio",["visual studio"]);
+    extractSkill("Wireshark", ["wireshark"]);
+    extractSkill("Wordpress",["wordpress"]);
 
     //broad
     extractSkill("Cloud", ["cloud"]);
     extractSkill("Humor", [" fun ", " fun, ", " fun. ", "humour", "humor"]);
     extractSkill("Space", ["satellite", "rocket", "launch"]);
     extractSkill("Teamwork", ["jira", "collabor"]);
-    extractSkill("Networking", ["osi model", "networks"]);
+    extractSkill("Networking", ["osi model", "networks", "networking"]);
     extractSkill("GameDev", ["game dev", "games"]);
     extractSkill("WebDev", ["web deve", "front end", "frontend", "front-end"]);
     extractSkill("Low-Level", ["systems program"]);
@@ -122,7 +125,7 @@ function extractSkills(listing) {
     inferSuperskill("Cloud", ["AWS", "Azure"]);
     inferSuperskill("Networking", ["Wireshark"]);
     inferSuperskill("FrontEnd", ["Tailwind"], ["Bootstrap"], ["CSS"]);
-    inferSuperskill("WebDev", ["Javascript", "Typescript", "CSS", "HTML", "React", "Angular", "Tailwind"]);
+    inferSuperskill("WebDev", ["Javascript", "Typescript", "CSS", "HTML", "React", "Angular", "Tailwind", "wordpress"]);
     inferSuperskill("Low-Level", ["C", "C++", "Assembly"]);
     inferSuperskill("shell scripting",["bash"]);
     inferSuperskill("Linux", ["bash"]);

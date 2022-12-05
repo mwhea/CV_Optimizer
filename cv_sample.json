@@ -95,14 +95,16 @@
                 "name": "git",
                 "importance": "3",
                 "skills demonstrated": [
-                    "git"
+                    "git",
+                    "Teamwork"
                 ]
             },
             {
                 "name": "vim",
                 "importance": "1",
                 "skills demonstrated": [
-                    "Vim"
+                    "Vim",
+                    "Low-level"
                 ]
             },
             {
@@ -185,6 +187,13 @@
                     "WebDev",
                     "NodeJS"
                 ]
+            },
+            {
+                "name": "Wordpress",
+                "importance": "1",
+                "skills demonstrated": [
+                    "Wordpress"
+                ]
             }
         ],
         "Operating Systems": [
@@ -208,7 +217,6 @@
                     "Linux"
                 ]
             },
-            
             {
                 "name": "Neutrino RTOS",
                 "importance": "1",
@@ -312,7 +320,7 @@
         "Problem Solving": [
             {
                 "name": "Won class challenge to implement final Assembly project with fewest machine instructions.",
-                "importance": "3",
+                "importance": "2",
                 "skills demonstrated": [
                     "Assembly"
                 ]
@@ -325,14 +333,14 @@
         "Time Management": [
             {
                 "name": "Maintained Dean’s Honours List as a first time father.",
-                "importance": "3",
+                "importance": "2",
                 "skills demonstrated": [
                     "Time Management"
                 ]
             },
             {
                 "name": "Kept ahead of all assignment deadlines.",
-                "importance": "3",
+                "importance": "2",
                 "skills demonstrated": [
                     "Time Management"
                 ]

@@ -36,7 +36,7 @@ let listing = await readFile(new URL(`./Job_Listing/job.txt`, import.meta.url));
 listing = listing.toString().replace(/(\r\n|\n|\r)/gm, " ");
 
 console.log("Extracted skills from listing:");
-extractSkills(listing);
+extractSkills();
 
 adjustImportances(cv, skillsSought);
 removeUnpromisingCategories(cv);
@@ -45,11 +45,11 @@ removeOnes(cv);
 removeEmpty(cv);
 convertObjectsToStrings(cv);
 
-textString = convertToText(cv, 0);
+textString = convertToText(cv, "");
 await writeFile(`./${(cv["Contact Info"].name).replace(" ", "_")}_CV.json`, JSON.stringify(cv));
 await writeFile(`./${(cv["Contact Info"].name).replace(" ", "_")}_CV.txt`, textString);
 
-function extractSkills(listing) {
+function extractSkills() {
 
     //A few need case to be sure, but for the rest we're going to check later with all-lowercase
     extractSkill(".NET", [".NET"]);
@@ -71,6 +71,7 @@ function extractSkills(listing) {
     extractSkill("C", [" c ", " c,"]);
     extractSkill("C++", ["c++"]);
     extractSkill("C#", ["c#"]);
+    extractSkill("Databases", ["entity framework"]);
     extractSkill("Docker", ["docker"]);
     extractSkill("Eclipse", ["eclipse"]);
     extractSkill("git", ["git", "version control"]);
@@ -81,6 +82,7 @@ function extractSkills(listing) {
     extractSkill("Kubernetes", ["kubernetes"]);
     extractSkill("Linux", ["linux"]);
     extractSkill("NodeJS", ["nodejs", " node"]);
+    extractSkill("Postgres", ["postgr"]);
     extractSkill("React", ["reactjs", "react, "]);
     extractSkill("shell scripting",["powershell", "command line", "scripting"]);
     extractSkill("Typescript", ["typescript"]);
@@ -107,6 +109,7 @@ function extractSkills(listing) {
 
     //Infer skills which are supersets of other skills"
     inferSuperskill("Cloud", ["AWS", "Azure"]);
+    inferSuperskill("Databases", ["Postgres"]);
     inferSuperskill("Networking", ["Wireshark"]);
     inferSuperskill("FrontEnd", ["Tailwind"], ["Bootstrap"], ["CSS"]);
     inferSuperskill("WebDev", ["Javascript", "Typescript", "CSS", "HTML", "React", "Angular", "Tailwind", "wordpress"]);

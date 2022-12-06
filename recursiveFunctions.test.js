@@ -4,22 +4,31 @@ import {
     isSupercategory, 
     isCategory, 
     tabulate, 
-    removeUnpromisingCategories 
+    removeUnpromisingCategories, 
+    convertObjectsToStrings
 } from './recursiveFunctions';
 
-let sample = {
+let blueprint = {
 
     "Empty Object": {},
     "Empty Array": [],
     "Object": {
-        "property": "value"
+        "property": "value",
+        "importance": "3",
+        "skills demonstrated": [
+            "Skill"
+        ]
     },
     "Array": [
         "array value"
     ],
     "Array of Objects": [
         {
-            "property": "value"
+            "property": "value",
+            "importance": "3",
+            "skills demonstrated": [
+                "Skill"
+            ]
         },
         {
             "property": "value"
@@ -74,6 +83,8 @@ let sample = {
         }
     ]
 }
+
+let sample = JSON.parse(JSON.stringify(blueprint));
 
 describe("Test categorization categorizer", () => {
 
@@ -161,6 +172,19 @@ describe("Test category remover", () => {
     });
 
 });
+
+describe("Test obj -> string conversion", () => {
+
+    beforeAll(()=>{
+        sample = JSON.parse(JSON.stringify(blueprint));
+        convertObjectsToStrings(sample);
+    });
+
+    test('Objects in a top-level array get theirs skillists removed?', () => {
+        expect(sample["Array of Objects"][0].importance).not.toBeDefined();
+    });
+ 
+ });
 
 function whySupercategory(obj) {
         return obj.reduce((errorString, o) => {

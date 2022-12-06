@@ -196,6 +196,10 @@ export function convertObjectsToStrings(cv) {
                 else if (obj[i].description !== undefined) {
                     obj[i] = obj[i].description;
                 }
+                else {
+                    delete obj[i].importance;
+                    delete obj[i]['skills demonstrated'];
+                }
             }
         }
         return false;

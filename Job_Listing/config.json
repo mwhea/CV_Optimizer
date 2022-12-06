@@ -1,0 +1,12 @@
+{
+    "job title": "job",
+    "export to": [
+        "text",
+        "pdf"
+    ],
+    "skills not in listing": [
+        "Creativity"
+    ],
+    "job-specific paragraph":"",
+    "include references": "false"
+}

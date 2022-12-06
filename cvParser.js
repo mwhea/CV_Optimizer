@@ -1,6 +1,7 @@
 import {
     readFile,
-    writeFile
+    writeFile,
+    cp
 } from 'fs/promises';
 
 import {
@@ -13,27 +14,40 @@ import {
     removeUnpromisingCategories
 } from './recursiveFunctions.js'
 
-/*
-Todo:
-    edit linkedin
-    write formatted json
-*/
-
-/* The modes are:
- -text
- -json
- -pdf
-*/
-
-const exportTo = "json";
 let skillsSought = [];
 let textString = "";
 
-let cv = await readFile(new URL(`./cv.json`, import.meta.url));
-cv = JSON.parse(cv);
-
-let listing = await readFile(new URL(`./Job_Listing/job.txt`, import.meta.url));
+let cv = JSON.parse(await readFile(new URL(`./cv.json`, import.meta.url)));
+let listing = await readFile(new URL(`./Job_Listing/listing.txt`, import.meta.url));
 listing = listing.toString().replace(/(\r\n|\n|\r)/gm, " ");
+let config = JSON.parse(await readFile(new URL(`./Job_Listing/config.json`, import.meta.url)));
+
+let exports = {
+    "json": false,
+    "text": false,
+    "pdf": false,
+};
+
+
+if (config["export to"].find((e) => { return (e == "json"); })!== undefined) {
+    exports.json = true;
+}
+if (config["export to"].find((e) => { return (e == "text"); })!== undefined) {
+    exports.text = true;
+}
+if (config["export to"].find((e) => { return (e == "pdf"); })!== undefined) {
+    exports.pdf = true;
+}
+console.log("Exporting to:")
+for (let i in exports) {
+    if (exports[i]){    console.log(`-${i}`)}
+}
+
+skillsSought.push(...config["skills not in listing"])
+
+
+let folderName = './'+config["job title"].replace(/[/\\?%*:|"<>]/g, "")+"/";
+await cp(`./Job_Listing/`, folderName, {"force": true, "recursive":true})
 
 console.log("Extracted skills from listing:");
 extractSkills();
@@ -46,8 +60,8 @@ removeEmpty(cv);
 convertObjectsToStrings(cv);
 
 textString = convertToText(cv, "");
-await writeFile(`./${(cv["Contact Info"].name).replace(" ", "_")}_CV.json`, JSON.stringify(cv));
-await writeFile(`./${(cv["Contact Info"].name).replace(" ", "_")}_CV.txt`, textString);
+if (exports.json){await writeFile(`${folderName}${(cv["Contact Info"].name).replace(" ", "_")}_CV.json`, JSON.stringify(cv));}
+if (exports.text){await writeFile(`${folderName}${(cv["Contact Info"].name).replace(" ", "_")}_CV.txt`, textString);}
 
 function extractSkills() {
 

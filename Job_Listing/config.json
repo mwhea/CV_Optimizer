@@ -1,5 +1,6 @@
 {
     "job title": "job",
+    "employer": "employer",
     "export to": [
         "text",
         "pdf"
@@ -7,6 +8,9 @@
     "skills not in listing": [
         "Creativity"
     ],
-    "job-specific paragraph":"",
-    "include references": "false"
+    "include references": "false",
+    "cover letter": {
+        "addressee": "",
+        "job-specific paragraph": ""
+    }
 }

@@ -32,6 +32,13 @@
                     "C#",
                     ".NET"
                 ]
+            },            
+            {
+                "name": "Java EE",
+                "importance": "1",
+                "skills demonstrated": [
+                    "Java EE"
+                ]
             },
             {
                 "name": "C#",
@@ -124,11 +131,24 @@
             },
             {
                 "name": "Visual Studio",
-                "importance": "1"
+                "importance": "1",
+                "skills demonstrated": [
+                    "Visual Studio"
+                ]
+            },            
+            {
+                "name": "NetBeans",
+                "importance": "1",
+                "skills demonstrated": [
+                    "NetBeans"
+                ]
             },
             {
                 "name": "Eclipse IDE",
-                "importance": "1"
+                "importance": "1",
+                "skills demonstrated": [
+                    "Eclipse"
+                ]
             },
             {
                 "name": "VS Code",
@@ -152,6 +172,13 @@
                 "importance": "1",
                 "skills demonstrated": [
                     "VMs"
+                ]
+            },
+            {
+                "name": "Jest",
+                "importance": "1",
+                "skills demonstrated": [
+                    "Testing"
                 ]
             }
         ],
@@ -266,7 +293,8 @@
                 "name": "Wireshark",
                 "importance": "2",
                 "skills demonstrated": [
-                    "Networking"
+                    "Networking",
+                    "Wireshark"
                 ]
             },
             {

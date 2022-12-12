@@ -147,20 +147,23 @@ function extractSkills() {
     extractSkill("C", [" c ", " c,"]);
     extractSkill("C++", ["c++"]);
     extractSkill("C#", ["c#"]);
-    extractSkill("Databases", ["entity framework"]);
+    extractSkill("Databases", ["database", "entity framework"]);
     extractSkill("Docker", ["docker"]);
     extractSkill("Eclipse", ["eclipse"]);
     extractSkill("git", ["git", "version control"]);
     extractSkill("grep",["grepping", "grep for"]);
     extractSkill("Java", [" java ", "java, ", "java."]);
+    extractSkill("Java EE", ["java ee", "java enterprise"]);
     extractSkill("Javascript", ["javascript"]);
     extractSkill("Jira", ["jira"]);
     extractSkill("Kubernetes", ["kubernetes"]);
     extractSkill("Linux", ["linux"]);
+    extractSkill("NetBeans", ["netbeans"]);
     extractSkill("NodeJS", ["nodejs", " node"]);
     extractSkill("Postgres", ["postgr"]);
     extractSkill("React", ["reactjs", "react, "]);
     extractSkill("shell scripting",["powershell", "command line", "scripting"]);
+    extractSkill("Testing", ["testing"]);
     extractSkill("Typescript", ["typescript"]);
     extractSkill("Tailwind", ["tailwind"]);
     extractSkill("Vim",[" vim ", " vim,", " vim."]);
@@ -173,12 +176,13 @@ function extractSkills() {
     extractSkill("Cloud", ["cloud"]);
     extractSkill("Humor", [" fun ", " fun, ", " fun. ", "humour", "humor"]);
     extractSkill("Space", ["satellite", "rocket", "launch"]);
-    extractSkill("Teamwork", ["jira", "collabor"]);
+    extractSkill("Teamwork", ["jira", "collabor", "leadership"]);
     extractSkill("Networking", ["osi model", "networks", "networking"]);
     extractSkill("GameDev", ["game dev", "games"]);
     extractSkill("WebDev", ["web deve", "front end", "frontend", "front-end"]);
     extractSkill("Low-Level", ["systems program"]);
     extractSkill("Creativity", ["creativ"]);
+    extractSkill("Time Management", ["time manag", "autonom"]);
 
     //Add skills which are siblings of related skills
     //addSiblings("Java", "C#");

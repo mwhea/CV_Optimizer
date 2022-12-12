@@ -315,6 +315,13 @@
         ],
         "Teamwork": [
             {
+                "name": "All college group projects have been graded A+.",
+                "importance": "2",
+                "skills demonstrated": [
+                    "Teamwork"
+                ]
+            },
+            {
                 "name": "Identified priorities and assigned tasks.",
                 "importance": "2",
                 "skills demonstrated": [
@@ -329,14 +336,7 @@
                 ]
             },
             {
-                "name": "All group projects have been graded A+",
-                "importance": "2",
-                "skills demonstrated": [
-                    "Teamwork"
-                ]
-            },
-            {
-                "name": "Final team project, a web app in React, placed third across entire STEM department (200$ prize)",
+                "name": "Final team project, a web app in React, placed third across entire STEM department (200$ prize).",
                 "importance": "2",
                 "skills demonstrated": [
                     "Teamwork",
@@ -412,7 +412,7 @@
     "Personal Projects": {
         "Prediction Market Trading Bot": [
             {
-                "description": "Placed 1st in a trading bot programming contest ($500 prize)",
+                "description": "Placed 1st in a trading bot programming contest ($500 prize).",
                 "importance": "3",
                 "skills demonstrated": [
                     "Finance",
@@ -423,7 +423,7 @@
                 ]
             },
             {
-                "description": "Placed 8th ($250) competing with humans in a concurrent contest to predict grant awardees",
+                "description": "Placed 8th ($250) competing with humans in a concurrent contest to predict grant awardees.",
                 "importance": "3",
                 "skills demonstrated": [
                     "Finance",
@@ -434,7 +434,7 @@
                 ]
             },
             {
-                "description": "The resultant bot is the #1 top performing user-created bot on the website and #6 trader in all-time profits",
+                "description": "The resultant bot is the #1 top performing user-created bot on the website and #6 trader in all-time profits.",
                 "importance": "3",
                 "skills demonstrated": [
                     "Finance",
@@ -445,7 +445,7 @@
                 ]
             },
             {
-                "description": "The code can be found at https://github.com/mwhea/Manifold_Trading_Bots",
+                "description": "The code can be found at https://github.com/mwhea/Manifold_Trading_Bots.",
                 "importance": "2",
                 "skills demonstrated": [
                     "Finance",
@@ -469,7 +469,7 @@
         ],
         "CV Optimizer": [
             {
-                "description": "Reorganizes CV based on keywords in a job description",
+                "description": "Takes as inputs a plaintext job posting, scans for skills desired, then sorts and prunes the CV accordingly.",
                 "importance": "3",
                 "skills demonstrated": [
                     "Javascript",
@@ -479,17 +479,7 @@
                 ]
             },
             {
-                "description": "Takes as inputs a plaintext job posting and list of candidate skills & experience, and uses the Adobe Indesign scripting API (javascript based) to fill in the CV with only those skills which are most relevant to the listing.",
-                "importance": "3",
-                "skills demonstrated": [
-                    "Javascript",
-                    "NodeJS",
-                    "Creativity",
-                    "Humor"
-                ]
-            },
-            {
-                "description": "The code can be found at https://github.com/mwhea/CV_Optimizer",
+                "description": "The code can be found at https://github.com/mwhea/CV_Optimizer.",
                 "importance": "3",
                 "skills demonstrated": [
                     "Javascript",
@@ -500,7 +490,7 @@
             }
         ]
     },
-    "Relevant Experience": [
+    "Work Experience": [
         {
             "position": "Co-op - Support Engineer, Technical Expertise Center",
             "employer": "Nokia, Ottawa",

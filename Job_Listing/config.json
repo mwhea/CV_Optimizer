@@ -2,11 +2,9 @@
     "job title": "job",
     "employer": "employer",
     "export to": [
-        "text",
-        "pdf"
+        "text"
     ],
     "skills not in listing": [
-        "Creativity"
     ],
     "include references": "false",
     "cover letter": {

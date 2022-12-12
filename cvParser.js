@@ -61,6 +61,9 @@ sortSections(cv);
 removeOnes(cv);
 removeEmpty(cv);
 convertObjectsToStrings(cv);
+if (config["include references"] !== true) {
+    delete cv["References"]
+}
 
 let textString = convertToText(cv, "");
 

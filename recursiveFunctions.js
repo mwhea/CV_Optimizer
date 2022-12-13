@@ -152,7 +152,7 @@ export function adjustImportances(input, skills) {
         }
         if (anySkills === true) {
 
-            obj["importance"] = parseInt(obj["importance"]) + 1;
+            obj["importance"] = parseInt(obj["importance"]) + 2;
         }
 
     });
@@ -178,8 +178,7 @@ export function removeOnes(cv){
             obj.splice(markedForDeletion[markedForDeletion.length - 1 - i], 1);
         }
         return false;
-    }
-    )
+    })
 }
 
 export function convertObjectsToStrings(cv) {

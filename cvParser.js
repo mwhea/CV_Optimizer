@@ -141,7 +141,9 @@ function extractSkills() {
     extractSkill("VMs", ["VM"]);
     extractSkill("Vim",["Vim ", "Vim, ", "Vim."]);
     extractSkill("Linux", ["RHEL"]);
-
+    extractSkill("RTOS", ["RTOS"]);
+    extractSkill("Testing", ["TDD"]);
+    
     listing = listing.toString().toLowerCase();
 
     //specific
@@ -149,29 +151,34 @@ function extractSkills() {
     extractSkill("Angular", ["angular"]);
     extractSkill("bash",[" bash"]);
     extractSkill("Bootstrap", ["bootstrap"]);
-    extractSkill("C", [" c ", " c,"]);
+    dontExtractFragments("C", "c");
     extractSkill("C++", ["c++"]);
     extractSkill("C#", ["c#"]);
     extractSkill("Databases", ["database", "entity framework"]);
     extractSkill("Docker", ["docker"]);
     extractSkill("Eclipse", ["eclipse"]);
-    extractSkill("git", ["git", "version control"]);
+    extractSkill("gcc", ["gcc"]);
+    extractSkill("gdb", ["gdb"]);
+    dontExtractFragments("git", "git");
+    extractSkill("git", ["version control"]);
     extractSkill("grep",["grepping", "grep for"]);
-    extractSkill("Java", [" java ", "java, ", "java."]);
+    dontExtractFragments("Java", "java");
     extractSkill("Java EE", ["java ee", "java enterprise"]);
     extractSkill("Javascript", ["javascript"]);
     extractSkill("Jira", ["jira"]);
     extractSkill("Kubernetes", ["kubernetes"]);
     extractSkill("Linux", ["linux"]);
+    extractSkill("Momentics", ["momentics"]);
     extractSkill("NetBeans", ["netbeans"]);
-    extractSkill("NodeJS", ["nodejs", " node"]);
+    extractSkill("Neutrino", ["neutrino"]);
+    extractSkill("NodeJS", ["nodejs", " node", "node.js"]);
     extractSkill("Postgres", ["postgr"]);
     extractSkill("React", ["reactjs", "react, "]);
     extractSkill("shell scripting",["powershell", "command line", "scripting"]);
-    extractSkill("Testing", ["testing"]);
+    extractSkill("Testing", ["testing", "test-driven"]);
     extractSkill("Typescript", ["typescript"]);
     extractSkill("Tailwind", ["tailwind"]);
-    extractSkill("Vim",[" vim ", " vim,", " vim."]);
+    dontExtractFragments("Vim", "vim");
     extractSkill("VS Code",["vs code"]);
     extractSkill("Visual Studio",["visual studio"]);
     extractSkill("Wireshark", ["wireshark"]);
@@ -179,28 +186,33 @@ function extractSkills() {
 
     //broad
     extractSkill("Cloud", ["cloud"]);
-    extractSkill("Humor", [" fun ", " fun, ", " fun. ", "humour", "humor"]);
-    extractSkill("Space", ["satellite", "rocket", "launch"]);
-    extractSkill("Teamwork", ["jira", "collabor", "leadership"]);
+    extractSkill("Creativity", ["creativ"]);
+    extractSkill("Communication", ["communication"]);
+    extractSkill("Containers", ["containeriz"]);
+    dontExtractFragments("Humor", "fun");
+    extractSkill("Humor", ["humour", "humor"]);
     extractSkill("Networking", ["osi model", "networks", "networking"]);
     extractSkill("GameDev", ["game dev", "games"]);
-    extractSkill("WebDev", ["web deve", "front end", "frontend", "front-end"]);
     extractSkill("Low-Level", ["systems program"]);
-    extractSkill("Creativity", ["creativ"]);
-    extractSkill("Time Management", ["time manag", "autonom"]);
+    extractSkill("Space", ["satellite", "rocket"]);
+    extractSkill("Teamwork", ["jira", "collabor", "leadership"]);
+    extractSkill("Time Management", ["time manag", "autonom", "self-motivated", "initiative"]);
+    extractSkill("WebDev", ["web deve", "front end", "frontend", "front-end"]);
 
     //Add skills which are siblings of related skills
     //addSiblings("Java", "C#");
 
     //Infer skills which are supersets of other skills"
     inferSuperskill("Cloud", ["AWS", "Azure"]);
+    inferSuperskill("Containers", ["Docker"]);
     inferSuperskill("Databases", ["Postgres"]);
     inferSuperskill("Networking", ["Wireshark"]);
     inferSuperskill("FrontEnd", ["Tailwind"], ["Bootstrap"], ["CSS"]);
-    inferSuperskill("WebDev", ["Javascript", "Typescript", "CSS", "HTML", "React", "Angular", "Tailwind", "wordpress"]);
     inferSuperskill("Low-Level", ["C", "C++", "Assembly"]);
     inferSuperskill("shell scripting",["bash"]);
     inferSuperskill("Linux", ["bash"]);
+    inferSuperskill("RTOS", ["Neutrino"]);
+    inferSuperskill("WebDev", ["Javascript", "Typescript", "CSS", "HTML", "React", "Angular", "Tailwind", "wordpress"]);
 
     //Add a thing where if Typescript is a sought skill, replace every reference to Javascript
 
@@ -210,6 +222,12 @@ function extractSkills() {
     // }
 
     return skillsSought;
+
+}
+
+function dontExtractFragments(skill, searchString){
+    
+    extractSkill(skill, [` ${searchString} `, ` ${searchString},`, ` ${searchString}.`]);
 
 }
 

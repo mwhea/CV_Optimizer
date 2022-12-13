@@ -56,10 +56,12 @@ console.log("Extracted skills from listing:");
 extractSkills();
 
 adjustImportances(cv, skillsSought);
-if (config["job title"] === undefined) {removeUnpromisingCategories(cv);}
+if (listing!=="") {removeUnpromisingCategories(cv);}
 sortSections(cv);
+
 removeOnes(cv);
 removeEmpty(cv);
+
 convertObjectsToStrings(cv);
 if (config["include references"] !== true) {
     delete cv["References"]

@@ -99,13 +99,13 @@ if (config["job title"] !== "") {
     else{jobString += "a ";}
     jobString += config["job title"]
 
-    folderName = './'+config["job title"].replace(/[/\\?%*:|"<>]/g, "")+"/";
+    folderName = './'+config["employer"].replace(/[/\\?%*:|"<>]/g, "").replace(/[\ ]/g, "_")+"_"+config["job title"].replace(/[/\\?%*:|"<>]/g, "").replace(/[\ ]/g, "_")+"/";
 }
 else if (config["employer"] !== "") {
     jobString += "a position with "
     jobString += config["employer"];
 
-    folderName = './'+config["employer"].replace(/[/\\?%*:|"<>]/g, "")+"/";
+    folderName = './'+config["employer"].replace(/[/\\?%*:|"<>]/g, "").replace(/[\ ]/g, "_")+"/";
 }
 else {
     console.warn("ERROR: You must provide either a job title or an employer name in the program configuration")
@@ -124,9 +124,9 @@ letterString = letterString.replace("[POSITION]",jobString);
  */
 
 await cp(`./Job_Listing/`, folderName, {"force": true, "recursive":true})
-if (exports.json){await writeFile(`${folderName}${(cv["Contact Info"].name).replace(" ", "_")}_CV.json`, JSON.stringify(cv));}
-if (exports.text){await writeFile(`${folderName}${(cv["Contact Info"].name).replace(" ", "_")}_CV.txt`, textString);}
-if (exports.text || exports.text){await writeFile(`${folderName}${(cv["Contact Info"].name).replace(" ", "_")}_Cover_Letter.txt`, letterString);}
+if (exports.json){await writeFile(`${folderName}${(cv["Contact Info"].name).replace(/[\ ]/g, "_")}_CV.json`, JSON.stringify(cv));}
+if (exports.text){await writeFile(`${folderName}${(cv["Contact Info"].name).replace(/[\ ]/g, "_")}_CV.txt`, textString);}
+if (exports.text || exports.text){await writeFile(`${folderName}${(cv["Contact Info"].name).replace(/[\ ]/g, "_")}_Cover_Letter.txt`, letterString);}
 
 
 

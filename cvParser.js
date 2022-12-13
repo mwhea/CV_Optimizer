@@ -98,6 +98,10 @@ if (config["job title"] !== "") {
     if (vowels.find((v)=>{return (v===config["job title"][0]);})!== undefined) {jobString += "an ";}
     else{jobString += "a ";}
     jobString += config["job title"]
+    if (config["employer"] !== "") {
+        jobString += " with "
+        jobString += config["employer"];
+    }
 
     folderName = './'+config["employer"].replace(/[/\\?%*:|"<>]/g, "").replace(/[\ ]/g, "_")+"_"+config["job title"].replace(/[/\\?%*:|"<>]/g, "").replace(/[\ ]/g, "_")+"/";
 }
@@ -118,6 +122,13 @@ if (config["cover letter"]["job-specific paragraph"] !== "") {
 
 
 letterString = letterString.replace("[POSITION]",jobString);
+
+if (config["job title"]!== undefined){
+letterString = letterString.replace("[POSITION/ORG]", "the position");
+}
+else {
+    letterString = letterString.replace("[POSITION/ORG]", "a position with "+["employer"]);
+}
 
 /**
  * Export Results

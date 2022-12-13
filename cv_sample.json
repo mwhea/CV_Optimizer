@@ -97,91 +97,6 @@
                 ]
             }
         ],
-        "Other Tools": [
-            {
-                "name": "git",
-                "importance": "3",
-                "skills demonstrated": [
-                    "git",
-                    "Teamwork"
-                ]
-            },
-            {
-                "name": "vim",
-                "importance": "1",
-                "skills demonstrated": [
-                    "Vim",
-                    "Low-level"
-                ]
-            },
-            {
-                "name": "grep",
-                "importance": "1",
-                "skills demonstrated": [
-                    "grep"
-                ]
-            },
-            {
-                "name": "Jira",
-                "importance": "3",
-                "skills demonstrated": [
-                    "Teamwork",
-                    "Jira"
-                ]
-            },
-            {
-                "name": "Visual Studio",
-                "importance": "1",
-                "skills demonstrated": [
-                    "Visual Studio"
-                ]
-            },            
-            {
-                "name": "NetBeans",
-                "importance": "1",
-                "skills demonstrated": [
-                    "NetBeans"
-                ]
-            },
-            {
-                "name": "Eclipse IDE",
-                "importance": "1",
-                "skills demonstrated": [
-                    "Eclipse"
-                ]
-            },
-            {
-                "name": "VS Code",
-                "importance": "1",
-                "skills demonstrated": [
-                    "Javascript",
-                    "Typescript"
-                ]
-            },
-            {
-                "name": "Microsoft Azure",
-                "importance": "1",
-                "skills demonstrated": [
-                    ".NET",
-                    "Cloud",
-                    "Azure"
-                ]
-            },
-            {
-                "name": "VMWare Tools",
-                "importance": "1",
-                "skills demonstrated": [
-                    "VMs"
-                ]
-            },
-            {
-                "name": "Jest",
-                "importance": "1",
-                "skills demonstrated": [
-                    "Testing"
-                ]
-            }
-        ],
         "Web Development": [
             {
                 "name": "HTML5",
@@ -304,6 +219,148 @@
                     "Networking"
                 ]
             }
+        ],
+        
+        "Development Tools": [
+            {
+                "name": "git",
+                "importance": "3",
+                "skills demonstrated": [
+                    "git",
+                    "Teamwork"
+                ]
+            },
+            {
+                "name": "Github",
+                "importance": "1",
+                "skills demonstrated": [
+                    "Github"
+                ]
+            },
+            {
+                "name": "vim",
+                "importance": "1",
+                "skills demonstrated": [
+                    "Vim",
+                    "Low-level"
+                ]
+            },
+            {
+                "name": "grep",
+                "importance": "1",
+                "skills demonstrated": [
+                    "grep"
+                ]
+            },
+            {
+                "name": "Jira",
+                "importance": "3",
+                "skills demonstrated": [
+                    "Teamwork",
+                    "Jira"
+                ]
+            },
+            {
+                "name": "Visual Studio",
+                "importance": "1",
+                "skills demonstrated": [
+                    "Visual Studio"
+                ]
+            },            
+            {
+                "name": "NetBeans",
+                "importance": "1",
+                "skills demonstrated": [
+                    "NetBeans"
+                ]
+            },
+            {
+                "name": "Eclipse IDE",
+                "importance": "1",
+                "skills demonstrated": [
+                    "Eclipse",
+                    "Momentics"
+                ]
+            },
+            {
+                "name": "Momentics IDE",
+                "importance": "1",
+                "skills demonstrated": [
+                    "Eclipse",
+                    "Momentics"
+                ]
+            },
+            {
+                "name": "VS Code",
+                "importance": "1",
+                "skills demonstrated": [
+                    "Javascript",
+                    "Typescript"
+                ]
+            },
+            {
+                "name": "Microsoft Azure",
+                "importance": "1",
+                "skills demonstrated": [
+                    ".NET",
+                    "Cloud",
+                    "Azure"
+                ]
+            },
+            {
+                "name": "VMWare Tools",
+                "importance": "1",
+                "skills demonstrated": [
+                    "VMs"
+                ]
+            },
+            {
+                "name": "JUnit",
+                "importance": "1",
+                "skills demonstrated": [
+                    "Testing"
+                ]
+            },
+            {
+                "name": "Jest",
+                "importance": "1",
+                "skills demonstrated": [
+                    "Testing"
+                ]
+            },
+            {
+                "name": "gcc",
+                "importance": "1",
+                "skills demonstrated": [
+                    "gcc"
+                ]
+            },
+            {
+                "name": "gdb",
+                "importance": "1",
+                "skills demonstrated": [
+                    "gdb"
+                ]
+            }
+        ],
+            "Art and Design": [
+                {
+                    "name": "Adobe Photoshop",
+                    "importance": "2",
+                    "skills demonstrated": [
+                        "Art",
+                        "Adobe"
+                    ]
+                },
+                {
+                    "name": "Adobe Indesign",
+                    "importance": "2",
+                    "skills demonstrated": [
+                        "Art",
+                        "Design",
+                        "Adobe"
+                    ]
+                }
         ]
     },
     "Soft Skills": {
@@ -414,6 +471,7 @@
             {
                 "description": "Placed 1st in a trading bot programming contest ($500 prize).",
                 "importance": "3",
+                "order": "-1",
                 "skills demonstrated": [
                     "Finance",
                     "Javascript",
@@ -488,6 +546,33 @@
                     "Humor"
                 ]
             }
+        ],
+        "Home Server": [
+            {
+                "description": "Repaired an old laptop sufficiently to run it as a server.",
+                "importance": "2",
+                "order": "-1",
+                "skills demonstrated": [
+                    "Linux",
+                    "Hardware"
+                ]
+            },
+            {
+                "description": "Installed Linux and useful software from the command line, such as VNC and cloud file storage.",
+                "importance": "1",
+                "skills demonstrated": [
+                    "Linux",
+                    "shell scripting"
+                ]
+            },
+            {
+                "description": "There was lots of debugging involved.",
+                "importance": "1",
+                "skills demonstrated": [
+                    "Debugging",
+                    "shell scripting"
+                ]
+            }
         ]
     },
     "Work Experience": [
@@ -529,7 +614,7 @@
         {
             "position": "Co-op - Digital Solutions Coordinator",
             "employer": "Canadian Film Institute, Ottawa",
-            "duration": "Jan 2021-Sept 2021",
+            "duration": "Jan 2021-Sept 2021, Sept 2022",
             "duties": [
                 {
                     "description": "Built a web service and AJAX functionality to enable, on a Wordpress-based site, dynamic content drawn from the festival database.",

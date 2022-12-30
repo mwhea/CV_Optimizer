@@ -153,13 +153,12 @@ if (exports.text || exports.text){await writeFile(`${folderName}${(cv["Contact I
 function extractSkills() {
 
     //A few need case to be sure, but for the rest we're going to check later with all-lowercase
-    extractSkill(".NET", [".NET"]);
+    extractSkill(".NET", [".NET" ,"ASP"]);
     extractSkill("AWS", ["AWS"]);
     extractSkill("Azure", ["Azure"]);
     extractSkill("Databases", ["SQL"]);
     extractSkill("React", ["React"]);
     extractSkill("VMs", ["VM"]);
-    extractSkill("Vim",["Vim ", "Vim, ", "Vim."]);
     extractSkill("Linux", ["RHEL"]);
     extractSkill("RTOS", ["RTOS"]);
     extractSkill("Testing", ["TDD"]);
@@ -169,11 +168,14 @@ function extractSkills() {
     //specific
     extractSkill(".NET", ["asp.net"]);
     extractSkill("Angular", ["angular"]);
+    
+    extractSkill("Assembly", ["assembly", "assembler"]);
     extractSkill("bash",[" bash"]);
     extractSkill("Bootstrap", ["bootstrap"]);
     dontExtractFragments("C", "c");
     extractSkill("C++", ["c++"]);
     extractSkill("C#", ["c#"]);
+    extractSkill("CSS", ["css"]);
     extractSkill("Databases", ["database", "entity framework"]);
     extractSkill("Docker", ["docker"]);
     extractSkill("Eclipse", ["eclipse"]);
@@ -182,20 +184,24 @@ function extractSkills() {
     dontExtractFragments("git", "git");
     extractSkill("git", ["version control"]);
     extractSkill("grep",["grepping", "grep for"]);
+    extractSkill("HTML",["html"]);
     dontExtractFragments("Java", "java");
     extractSkill("Java EE", ["java ee", "java enterprise"]);
     extractSkill("Javascript", ["javascript"]);
+    extractSkill("Jest", ["jest"]);
     extractSkill("Jira", ["jira"]);
+    extractSkill("JUnit", ["junit"]);
     extractSkill("Kubernetes", ["kubernetes"]);
     extractSkill("Linux", ["linux"]);
     extractSkill("Momentics", ["momentics"]);
     extractSkill("NetBeans", ["netbeans"]);
     extractSkill("Neutrino", ["neutrino"]);
     extractSkill("NodeJS", ["nodejs", " node", "node.js"]);
+    dontExtractFragments("PHP", "php");
     extractSkill("Postgres", ["postgr"]);
-    extractSkill("React", ["reactjs", "react, "]);
+    extractSkill("React", ["reactjs", "react.js"]);
+    dontExtractFragments("React", "react");
     extractSkill("shell scripting",["powershell", "command line", "scripting"]);
-    extractSkill("Testing", ["testing", "test-driven"]);
     extractSkill("Typescript", ["typescript"]);
     extractSkill("Tailwind", ["tailwind"]);
     dontExtractFragments("Vim", "vim");
@@ -213,9 +219,10 @@ function extractSkills() {
     extractSkill("Humor", ["humour", "humor"]);
     extractSkill("Networking", ["osi model", "networks", "networking"]);
     extractSkill("GameDev", ["game dev", "games"]);
-    extractSkill("Low-Level", ["systems program"]);
+    extractSkill("Low-Level", ["systems program", "system program"]);
     extractSkill("Space", ["satellite", "rocket"]);
     extractSkill("Teamwork", ["jira", "collabor", "leadership"]);
+    extractSkill("Testing", ["testing", "test-driven"]);
     extractSkill("Time Management", ["time manag", "autonom", "self-motivated", "initiative"]);
     extractSkill("WebDev", ["web deve", "front end", "frontend", "front-end"]);
 
@@ -225,7 +232,7 @@ function extractSkills() {
     //Infer skills which are supersets of other skills"
     inferSuperskill("Cloud", ["AWS", "Azure"]);
     inferSuperskill("Containers", ["Docker"]);
-    inferSuperskill("Databases", ["Postgres"]);
+    inferSuperskill("Databases", ["Postgres", "MySQL"]);
     inferSuperskill("Networking", ["Wireshark"]);
     inferSuperskill("FrontEnd", ["Tailwind"], ["Bootstrap"], ["CSS"]);
     inferSuperskill("Low-Level", ["C", "C++", "Assembly"]);
@@ -247,7 +254,7 @@ function extractSkills() {
 
 function dontExtractFragments(skill, searchString){
     
-    extractSkill(skill, [` ${searchString} `, ` ${searchString},`, ` ${searchString}.`]);
+    extractSkill(skill, [` ${searchString} `, ` ${searchString},`, ` ${searchString}.`, `${searchString}/`, `/${searchString}`]);
 
 }
 

@@ -22,6 +22,7 @@ let listing = await readFile(new URL(`./Job_Listing/listing.txt`, import.meta.ur
 listing = listing.toString().replace(/(\r\n|\n|\r)/gm, " ");
 let folderName = "";
 let config = JSON.parse(await readFile(new URL(`./Job_Listing/config.json`, import.meta.url)));
+let extraParas = JSON.parse(await readFile(new URL(`./extra_paragraphs.json`, import.meta.url)));
 
 let exports = {
     "json": false,
@@ -76,10 +77,18 @@ let textString = convertToText(cv, "");
 let coverLetter = JSON.parse(await readFile(new URL(`./cover_letter.json`, import.meta.url)));
 let letterString = "";
 
-for (let i in coverLetter){
+for (let i in coverLetter) {
 
-    letterString += coverLetter[i];
-    letterString += "\n\n";
+    if (coverLetter[i] === "[EXTRA PARAGRAPHS]") {
+        for (let i in config["cover letter"]["subject matter paragraphs"]) {
+            letterString += extraParas[(config["cover letter"]["subject matter paragraphs"][i])];
+            letterString += "\n\n";
+        }
+    }
+    else {
+        letterString += coverLetter[i];
+        letterString += "\n\n";
+    }
 
 }
 

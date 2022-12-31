@@ -6,9 +6,10 @@
     ],
     "skills not in listing": [
     ],
-    "include references": "false",
+    "include references": false,
     "cover letter": {
         "addressee": "",
         "job-specific paragraph": ""
-    }
+    },
+    "notes":""
 }

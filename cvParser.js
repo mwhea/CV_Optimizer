@@ -19,6 +19,7 @@ let skillsSought = [];
 
 let cv = JSON.parse(await readFile(new URL(`./cv.json`, import.meta.url)));
 let listing = await readFile(new URL(`./Job_Listing/listing.txt`, import.meta.url));
+let debugString = ""
 listing = listing.toString().replace(/(\r\n|\n|\r)/gm, " ");
 let folderName = "";
 let config = JSON.parse(await readFile(new URL(`./Job_Listing/config.json`, import.meta.url)));
@@ -28,6 +29,7 @@ let exports = {
     "json": false,
     "text": false,
     "pdf": false,
+    "debug": false
 };
 
 
@@ -40,6 +42,10 @@ if (config["export to"].find((e) => { return (e == "text"); })!== undefined) {
 if (config["export to"].find((e) => { return (e == "pdf"); })!== undefined) {
     exports.pdf = true;
 }
+if (config["export to"].find((e) => { return (e == "debug"); })!== undefined) {
+    exports.debug = true;
+}
+
 console.log("Exporting to:")
 for (let i in exports) {
     if (exports[i]){    console.log(`-${i}`)}
@@ -57,6 +63,7 @@ console.log("Extracted skills from listing:");
 extractSkills();
 
 adjustImportances(cv, skillsSought);
+debugString = JSON.stringify(cv);
 if (listing!=="") {removeUnpromisingCategories(cv);}
 sortSections(cv);
 
@@ -152,6 +159,7 @@ else {
 
 await cp(`./Job_Listing/`, folderName, {"force": true, "recursive":true})
 if (exports.json){await writeFile(`${folderName}${(cv["Contact Info"].name).replace(/[\ ]/g, "_")}_CV.json`, JSON.stringify(cv));}
+if (exports.debug){await writeFile(`${folderName}${(cv["Contact Info"].name).replace(/[\ ]/g, "_")}_debug.json`, debugString);}
 if (exports.text){await writeFile(`${folderName}${(cv["Contact Info"].name).replace(/[\ ]/g, "_")}_CV.txt`, textString);}
 if (exports.text || exports.text){await writeFile(`${folderName}${(cv["Contact Info"].name).replace(/[\ ]/g, "_")}_Cover_Letter.txt`, letterString);}
 

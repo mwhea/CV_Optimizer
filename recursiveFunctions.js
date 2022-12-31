@@ -45,27 +45,46 @@ export function recurseAnd(json, callback) {
     }
 }
 
+function sortFunc(a, b){
+
+        let aOrdering = 0;
+        let bOrdering = 0;
+        if (a.order !== undefined) { aOrdering = parseInt(a.order); }
+        if (b.order !== undefined) { bOrdering = parseInt(b.order); }
+        if (a.order === undefined && b.order === undefined) {
+            aOrdering = tabulate(a);
+            bOrdering = tabulate(b);
+        }
+        else {
+            aOrdering*=-1;
+            bOrdering*=-1;
+        }
+        return (bOrdering - aOrdering);
+    
+
+}
+
 export function sortSections(cv) {
 
     recurseAnd(cv, (json) => {
         if (Array.isArray(json) && json.length>0 && json[0].duration===undefined){
-            json.sort((a, b)=>{
-                let aOrdering = 0;
-                let bOrdering = 0;
-                if (a.order !== undefined) { aOrdering = parseInt(a.order); }
-                if (b.order !== undefined) { bOrdering = parseInt(b.order); }
-                if (a.order === undefined && b.order === undefined) {
-                    aOrdering = tabulate(a);
-                    bOrdering = tabulate(b);
-                }
-                else {
-                    aOrdering*=-1;
-                    bOrdering*=-1;
-                }
-                return (bOrdering - aOrdering);
-            })
-            
+            json.sort(sortFunc)
         }
+        else if (typeof json === "object"){
+
+            let entries = Object.entries(json);
+
+            let sorted = entries.sort(sortFunc);
+
+            for (var a in json) {
+                delete json[a];
+            }
+
+            for (var a in sorted) {
+                json[sorted[a][0]] = sorted[a][1];
+            }
+        }
+
     })
 
 }

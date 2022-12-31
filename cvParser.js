@@ -64,8 +64,15 @@ removeOnes(cv);
 removeEmpty(cv);
 
 convertObjectsToStrings(cv);
-if (config["include references"] !== true) {
+
+if (config["include references"] === true || config["include references"] === undefined) {
+}
+else if (config["include references"] === false) {
+    console.log("No references being added to CV.");
     delete cv["References"]
+}
+else {
+    console.log(`"Include References" setting contains an invalid value. it should be a boolean true or false.`);
 }
 
 let textString = convertToText(cv, "");

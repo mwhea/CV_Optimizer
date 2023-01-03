@@ -339,6 +339,13 @@ describe("Test sorting", () => {
         expect(Object.keys(sample["Supercategory"])[0]).toEqual("Database Engines");
     });
 
+    test('But things like contact info should of course not be sorted', () => {
+
+
+            sortSections(sample);
+        expect(Object.keys(sample)[0]).toEqual("Empty Object");
+    });
+
 });
 
 

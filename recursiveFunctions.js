@@ -33,7 +33,6 @@ export function tabulate(json) {
 
 export function recurseAnd(json, callback) {
 
-
     callback(json)
 
     for (let i in json) {
@@ -67,6 +66,14 @@ function sortFunc(a, b){
 export function sortSections(cv) {
 
     recurseAnd(cv, (json) => {
+
+        //Make sure only to sort lists of things with scores, and not contact lists, etc.
+        for (let i in json) {
+            if (tabulate(json[i]) === 0) {
+                return;
+            }
+        }
+
         if (Array.isArray(json) && json.length>0 && json[0].duration===undefined){
             json.sort(sortFunc)
         }

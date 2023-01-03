@@ -75,7 +75,16 @@ let blueprint = {
                 }
             ]
         }
-    ]
+    ],
+    "References": [
+        {
+            "property": "value"
+        },
+        {
+            "property": "value"
+        }
+    ],
+
 }
 
 let sample = JSON.parse(JSON.stringify(blueprint));
@@ -157,7 +166,12 @@ describe("Test category remover", () => {
         expect(sample["Jobs"]).toBeDefined();
 
     });
-    test('Is high-value job listing removed?', () => {
+
+    test('Are references left intact?', () => {
+        expect(sample["References"][0]).toBeDefined();
+    });
+
+    test('Is high-value job listing left intact?', () => {
         expect(sample["Jobs"][0]).toBeDefined();
     });
 

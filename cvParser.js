@@ -18,15 +18,15 @@ import {
 let listing;
 let skillsSought = [];
 
-export function getSkills(){
+export function getSkills() {
     return skillsSought;
 }
 
-export function clearSkills(){
+export function clearSkills() {
     skillsSought = [];
 }
 
-export function setListing(string){
+export function setListing(string) {
     listing = string;
 }
 
@@ -34,7 +34,10 @@ export const skillsToExtract = {
     //regexes for some of the tricker ones
     "C": { regex: /\bc\b(?![\+\#])/i },
     "C++": { regex: /c\+\+/i },
-    "HTML": { regex: /(?!\.)html/i }
+    "HTML": { regex: /(?!\.)html/i },
+    "C#": { regex: /c#/i },
+    ".NET": { regex: /[^w]\.net\b/i },
+    ".NET": { regex: /asp\.net/i }
 }
 
 main();
@@ -193,20 +196,11 @@ function extractSkills() {
 
     let skillNames = Object.keys(skillsToExtract);
 
-    for (let i in skillNames){
-        if (skillsToExtract[skillNames[i]].regex !== undefined){
+    for (let i in skillNames) {
+        if (skillsToExtract[skillNames[i]].regex !== undefined) {
             regexExtract(skillNames[i], skillsToExtract[skillNames[i]].regex);
         }
     }
-
-    //regexes for some of the tricker ones
-    //regexExtract("C", /\bc\b(?![\+\#])/i);  
-    //regexExtract("C++", /c\+\+/i);
-    regexExtract("C#", /c#/i);
-    //regexExtract("HTML", /(?!\.)html/i);
-
-    regexExtract(".NET", /[^w]\.net\b/i);
-    regexExtract(".NET", /asp\.net/i);
 
     //A few need case to be sure, but for the rest we're going to ignore case
     extractSkill("AWS", ["AWS"], "g");
@@ -223,7 +217,7 @@ function extractSkills() {
     extractSkill("Angular", ["angular"]);
     extractSkill("Assembly", ["assembly", "assembler"]);
     extractSkill("Mobile Apps", ["app develop", "mobile develop", "mobile app"])
-    extractSkill("bash",[" bash"]);
+    extractSkill("bash", [" bash"]);
     extractSkill("Bootstrap", ["bootstrap"]);
     extractSkill("CSS", ["css"]);
     extractSkill("Databases", ["database", "entity framework"]);
@@ -233,7 +227,7 @@ function extractSkills() {
     extractSkill("gdb", ["gdb"]);
     dontExtractFragments("git", "git");
     extractSkill("git", ["version control"]);
-    extractSkill("grep",["grepping", "grep for"]);
+    extractSkill("grep", ["grepping", "grep for"]);
     dontExtractFragments("Java", "java");
     extractSkill("Java EE", ["java ee", "java enterprise"]);
     extractSkill("Javascript", ["javascript"]);
@@ -251,20 +245,20 @@ function extractSkills() {
     extractSkill("Python", ["python"]);
     extractSkill("React", ["reactjs", "react.js"]);
     dontExtractFragments("React", "react");
-    extractSkill("shell scripting",["powershell", "command line", "scripting", "shell script"]);
+    extractSkill("shell scripting", ["powershell", "command line", "scripting", "shell script"]);
     extractSkill("Typescript", ["typescript"]);
     extractSkill("Tailwind", ["tailwind"]);
     dontExtractFragments("Vim", "vim");
-    extractSkill("VS Code",["vs code"]);
-    extractSkill("Visual Studio",["visual studio"]);
+    extractSkill("VS Code", ["vs code"]);
+    extractSkill("Visual Studio", ["visual studio"]);
     extractSkill("Wireshark", ["wireshark"]);
-    extractSkill("Wordpress",["wordpress"]);
+    extractSkill("Wordpress", ["wordpress"]);
 
     //broad
     extractSkill("Cloud", ["cloud"]);
     extractSkill("Creativity", ["creativ"]);
     extractSkill("Communication", ["communication"]);
-    extractSkill("Containers", ["containeriz"]);
+    extractSkill("Containers", ["containeriz", "containers"]);
     dontExtractFragments("Humor", "fun");
     extractSkill("Humor", ["humour", "humor"]);
     extractSkill("Networking", ["osi model", "networks", "networking"]);
@@ -283,13 +277,13 @@ function extractSkills() {
     inferSuperskill("Networking", ["Wireshark"]);
     inferSuperskill("FrontEnd", ["Tailwind"], ["Bootstrap"], ["CSS"]);
     inferSuperskill("Low-Level", ["C", "C++", "Assembly"]);
-    inferSuperskill("shell scripting",["bash"]);
+    inferSuperskill("shell scripting", ["bash"]);
     inferSuperskill("Linux", ["bash"]);
     inferSuperskill("RTOS", ["Neutrino"]);
     inferSuperskill("WebDev", ["CSS", "HTML", "React", "Angular", "Tailwind", "wordpress"]);
 
     //TODO: Add a thing where if Typescript is a sought skill, replace every reference to Javascript
-    
+
     //TODO: Add skills which are siblings of related skills
     //addSiblings("Java", "C#");
 
@@ -297,23 +291,23 @@ function extractSkills() {
 
 }
 
-function dontExtractFragments(skill, searchString){
+function dontExtractFragments(skill, searchString) {
 
-    regexExtract(skill, new RegExp("\\b"+searchString+"[^\\w\\b]", "i"));  
+    regexExtract(skill, new RegExp("\\b" + searchString + "[^\\w\\b]", "i"));
 
 }
 
 function extractSkill(skill, searchStrings, flags) {
 
     let theseFlags = flags;
-    if (theseFlags===undefined){
-        theseFlags="i";
+    if (theseFlags === undefined) {
+        theseFlags = "i";
     }
     if (skillsSought.find((s) => s === skill) !== undefined) {
         return;
     }
     for (let i in searchStrings) {
-        baseExtract(skill, new RegExp(searchStrings[i], theseFlags));  
+        baseExtract(skill, new RegExp(searchStrings[i], theseFlags));
     }
 }
 
@@ -343,8 +337,8 @@ function regexExtract(skill, regex) {
         return;
     }
 
-    baseExtract(skill, new RegExp(regex));  
-    
+    baseExtract(skill, new RegExp(regex));
+
 }
 
 function reportNewSkill(skill, criterion) {

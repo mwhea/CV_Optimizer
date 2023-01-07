@@ -10,6 +10,7 @@ import {
     adjustImportances
 } from './recursiveFunctions';
 
+
 let blueprint = {
 
     "Empty Object": {},
@@ -248,7 +249,7 @@ describe("Test sorting", () => {
                 ]
             }]
             sortSections(sample);
-        console.log(sample["Supercategory"]["Database Engines"][0]["property"]);
+
         expect(sample["Supercategory"]["Database Engines"][1]["property"]).toEqual("ss4");
     });
     test('Does it account for score adjustments?', () => {
@@ -276,7 +277,7 @@ describe("Test sorting", () => {
         adjustImportances(sample, ["Boosted Skill"]);
         
         sortSections(sample);
-        console.log(sample["Supercategory"]["Database Engines"][0]["property"]);
+
         expect(sample["Supercategory"]["Database Engines"][1]["property"]).toEqual("ss3");
     });
 
@@ -349,16 +350,19 @@ describe("Test sorting", () => {
                 "property": "ss3",
                 "importance": "3"
             }]
-            sortSections(sample);
+        sortSections(sample);
         expect(Object.keys(sample["Supercategory"])[0]).toEqual("Database Engines");
     });
 
     test('But things like contact info should of course not be sorted', () => {
 
 
-            sortSections(sample);
+        sortSections(sample);
         expect(Object.keys(sample)[0]).toEqual("Empty Object");
     });
+
+
+
 
 });
 

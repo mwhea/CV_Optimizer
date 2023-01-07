@@ -7,27 +7,27 @@ import {
     skillsToExtract
 } from './cvParser';
 
-import {jest} from '@jest/globals'
+import { jest } from '@jest/globals'
 
-        global.console = {
-            ...console,
-            // uncomment to ignore a specific log level
-            log: jest.fn(),
-            debug: jest.fn(),
-            info: jest.fn(),
-            // warn: jest.fn(),
-            // error: jest.fn(),
-          };
-          
-        jest.spyOn(global.console, 'log').mockImplementation(() => jest.fn());
+global.console = {
+    ...console,
+    // uncomment to ignore a specific log level
+    log: jest.fn(),
+    debug: jest.fn(),
+    info: jest.fn(),
+    // warn: jest.fn(),
+    // error: jest.fn(),
+};
+
+jest.spyOn(global.console, 'log').mockImplementation(() => jest.fn());
 
 describe("Test regexes", () => {
 
-    beforeAll(()=>{
+    beforeAll(() => {
 
     });
 
-    beforeEach(()=>{
+    beforeEach(() => {
         clearSkills();
     });
 

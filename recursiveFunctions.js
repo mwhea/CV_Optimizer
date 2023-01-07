@@ -7,25 +7,25 @@ export function tabulate(json) {
 
     let thisScore = 0;
     let scorers = 0;
-    
-    if (json.importance!==undefined){
+
+    if (json.importance !== undefined) {
         return parseInt(json.importance);
     }
 
     for (let i in json) {
 
-        if (Array.isArray(json[i]) || typeof json[i] === 'object') { 
-            
-            let score=parseInt(tabulate(json[i])); 
-            if (score>=3){scorers++}
-            if(score>thisScore){
-                thisScore=score;
+        if (Array.isArray(json[i]) || typeof json[i] === 'object') {
+
+            let score = parseInt(tabulate(json[i]));
+            if (score >= 3) { scorers++ }
+            if (score > thisScore) {
+                thisScore = score;
             }
         }
 
     }
 
-    if (scorers>1){thisScore += (scorers-1);}
+    if (scorers > 1) { thisScore += (scorers - 1); }
 
     return thisScore;
 }
@@ -37,29 +37,29 @@ export function recurseAnd(json, callback) {
 
     for (let i in json) {
         recursionDepth++;
-        if (Array.isArray(json[i]) || typeof json[i] === 'object') { 
-            recurseAnd(json[i], callback); 
+        if (Array.isArray(json[i]) || typeof json[i] === 'object') {
+            recurseAnd(json[i], callback);
         }
         recursionDepth--;
     }
 }
 
-function sortFunc(a, b){
+function sortFunc(a, b) {
 
-        let aOrdering = 0;
-        let bOrdering = 0;
-        if (a.order !== undefined) { aOrdering = parseInt(a.order); }
-        if (b.order !== undefined) { bOrdering = parseInt(b.order); }
-        if (a.order === undefined && b.order === undefined) {
-            aOrdering = tabulate(a);
-            bOrdering = tabulate(b);
-        }
-        else {
-            aOrdering*=-1;
-            bOrdering*=-1;
-        }
-        return (bOrdering - aOrdering);
-    
+    let aOrdering = 0;
+    let bOrdering = 0;
+    if (a.order !== undefined) { aOrdering = parseInt(a.order); }
+    if (b.order !== undefined) { bOrdering = parseInt(b.order); }
+    if (a.order === undefined && b.order === undefined) {
+        aOrdering = tabulate(a);
+        bOrdering = tabulate(b);
+    }
+    else {
+        aOrdering *= -1;
+        bOrdering *= -1;
+    }
+    return (bOrdering - aOrdering);
+
 
 }
 
@@ -74,10 +74,10 @@ export function sortSections(cv) {
             }
         }
 
-        if (Array.isArray(json) && json.length>0 && json[0].duration===undefined){
+        if (Array.isArray(json) && json.length > 0 && json[0].duration === undefined) {
             json.sort(sortFunc)
         }
-        else if (typeof json === "object"){
+        else if (typeof json === "object") {
 
             let entries = Object.entries(json);
 
@@ -98,8 +98,8 @@ export function sortSections(cv) {
 
 export function isCategory(obj) {
 
-    if (tabulate(obj) <= 0){return false;}
-    if (obj.importance !== undefined){return false;}
+    if (tabulate(obj) <= 0) { return false; }
+    if (obj.importance !== undefined) { return false; }
     return true;
 
 }
@@ -120,7 +120,7 @@ export function isSupercategory(obj) {
         const keys = Object.keys(obj);
         if (keys.length === 0) { return false; }
         keys.forEach((i) => {
-            if (isCategory(obj[i]) && i!=="duties") {
+            if (isCategory(obj[i]) && i !== "duties") {
                 isSupercategory = true;
             }
         });
@@ -135,28 +135,28 @@ export function removeUnpromisingCategories(input) {
         if (isSupercategory(obj)) {
 
             if (Array.isArray(obj)) {
-                for (let i = 0; i<obj.length; i++){
-                    
+                for (let i = 0; i < obj.length; i++) {
+
                     if (isCategory(obj[i]) && tabulate(obj[i]) < 3) {
-                        obj.splice(i, 1); 
+                        obj.splice(i, 1);
                         i--;
                     }
-                }        
+                }
             }
             else if (typeof obj === 'object') {
-        
+
                 const keys = Object.keys(obj);
-        
+
                 // Iterate over the own properties of the object.
                 keys.forEach((key) => {
-                    
+
                     if (isCategory(obj[key]) && tabulate(obj[key]) < 3) {
                         delete obj[key];
                     }
                 });
             }
         }
-        
+
     })
 }
 
@@ -184,7 +184,7 @@ export function adjustImportances(input, skills) {
     });
 }
 
-export function removeOnes(cv){
+export function removeOnes(cv) {
     recurseAnd(cv, (obj) => {
         let markedForDeletion = [];
 
@@ -232,7 +232,7 @@ export function convertObjectsToStrings(cv) {
     });
 }
 
-function getIndent(){
+function getIndent() {
     let textString = "";
     for (let j = 0; j < recursionDepth; j++) {
         textString += ' '
@@ -259,14 +259,14 @@ function isBottom(obj) {
         if (typeof (obj[i]) === "string") {
             return true
         }
-    
+
         return false;
     }
 }
 
-export function convertToText(obj, rFactor){
-    let prefix=rFactor;
-    let textString="";
+export function convertToText(obj, rFactor) {
+    let prefix = rFactor;
+    let textString = "";
 
     if (Array.isArray(obj) && isBottom(obj)) {
         for (let i in obj) {
@@ -278,13 +278,13 @@ export function convertToText(obj, rFactor){
 
         keys.forEach((k) => {
             if (Array.isArray(obj[k])) {
-                textString += convertToText(obj[k], prefix+"  ")
+                textString += convertToText(obj[k], prefix + "  ")
             } else {
                 textString += prefix + obj[k] + '\n';
             }
         })
 
-        textString+='\n'
+        textString += '\n'
     }
     else {
 

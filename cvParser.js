@@ -15,163 +15,195 @@ import {
     removeUnpromisingCategories
 } from './recursiveFunctions.js'
 
+let listing;
 let skillsSought = [];
 
-let cv = JSON.parse(await readFile(new URL(`./cv.json`, import.meta.url)));
-let listing = await readFile(new URL(`./Job_Listing/listing.txt`, import.meta.url));
-let debugString = ""
-listing = listing.toString().replace(/(\r\n|\n|\r)/gm, " ");
-let folderName = "";
-let config = JSON.parse(await readFile(new URL(`./Job_Listing/config.json`, import.meta.url)));
-let extraParas = JSON.parse(await readFile(new URL(`./extra_paragraphs.json`, import.meta.url)));
-
-let exports = {
-    "json": false,
-    "text": false,
-    "pdf": false,
-    "debug": false
-};
-
-
-if (config["export to"].find((e) => { return (e == "json"); })!== undefined) {
-    exports.json = true;
-}
-if (config["export to"].find((e) => { return (e == "text"); })!== undefined) {
-    exports.text = true;
-}
-if (config["export to"].find((e) => { return (e == "pdf"); })!== undefined) {
-    exports.pdf = true;
-}
-if (config["export to"].find((e) => { return (e == "debug"); })!== undefined) {
-    exports.debug = true;
+export function getSkills(){
+    return skillsSought;
 }
 
-console.log("Exporting to:")
-for (let i in exports) {
-    if (exports[i]){    console.log(`-${i}`)}
+export function clearSkills(){
+    skillsSought = [];
 }
 
-skillsSought.push(...config["skills not in listing"])
-
-
-
-/**
- * Generate Curriculum Vitae
- */
-
-console.log("Extracted skills from listing:");
-extractSkills();
-
-adjustImportances(cv, skillsSought);
-debugString = JSON.stringify(cv);
-if (listing!=="") {removeUnpromisingCategories(cv);}
-sortSections(cv);
-
-removeOnes(cv);
-removeEmpty(cv);
-
-convertObjectsToStrings(cv);
-
-if (config["include references"] === true || config["include references"] === undefined) {
-}
-else if (config["include references"] === false) {
-    console.log("No references being added to CV.");
-    delete cv["References"]
-}
-else {
-    console.log(`"Include References" setting contains an invalid value. it should be a boolean true or false.`);
+export function setListing(string){
+    listing = string;
 }
 
-let textString = convertToText(cv, "");
+export const skillsToExtract = {
+    //regexes for some of the tricker ones
+    "C": { regex: /\bc\b(?![\+\#])/i },
+    "C++": { regex: /c\+\+/i },
+    "HTML": { regex: /(?!\.)html/i }
+}
 
-/*
- * Generating the Cover Letter
- */
+main();
 
-let coverLetter = JSON.parse(await readFile(new URL(`./cover_letter.json`, import.meta.url)));
-let letterString = "";
+async function main() {
+    let cv = JSON.parse(await readFile(new URL(`./cv.json`, import.meta.url)));
 
-for (let i in coverLetter) {
+    listing = await readFile(new URL(`./Job_Listing/listing.txt`, import.meta.url));
+    let debugString = ""
+    listing = listing.toString().replace(/(\r\n|\n|\r)/gm, " ");
+    let folderName = "";
+    let config = JSON.parse(await readFile(new URL(`./Job_Listing/config.json`, import.meta.url)));
+    let extraParas = JSON.parse(await readFile(new URL(`./extra_paragraphs.json`, import.meta.url)));
 
-    if (coverLetter[i] === "[EXTRA PARAGRAPHS]") {
-        for (let i in config["cover letter"]["subject matter paragraphs"]) {
-            letterString += extraParas[(config["cover letter"]["subject matter paragraphs"][i])];
-            letterString += "\n\n";
-        }
+    let exports = {
+        "json": false,
+        "text": false,
+        "pdf": false,
+        "debug": false
+    };
+
+    if (config["export to"].find((e) => { return (e == "json"); }) !== undefined) {
+        exports.json = true;
+    }
+    if (config["export to"].find((e) => { return (e == "text"); }) !== undefined) {
+        exports.text = true;
+    }
+    if (config["export to"].find((e) => { return (e == "pdf"); }) !== undefined) {
+        exports.pdf = true;
+    }
+    if (config["export to"].find((e) => { return (e == "debug"); }) !== undefined) {
+        exports.debug = true;
+    }
+
+    console.log("Exporting to:")
+    for (let i in exports) {
+        if (exports[i]) { console.log(`-${i}`) }
+    }
+
+    skillsSought.push(...config["skills not in listing"])
+
+
+
+    /**
+     * Generate Curriculum Vitae
+     */
+
+    console.log("Extracted skills from listing:");
+    extractSkills();
+
+    adjustImportances(cv, skillsSought);
+    debugString = JSON.stringify(cv);
+    if (listing !== "") { removeUnpromisingCategories(cv); }
+    sortSections(cv);
+
+    removeOnes(cv);
+    removeEmpty(cv);
+
+    convertObjectsToStrings(cv);
+
+    if (config["include references"] === true || config["include references"] === undefined) {
+    }
+    else if (config["include references"] === false) {
+        console.log("No references being added to CV.");
+        delete cv["References"]
     }
     else {
-        letterString += coverLetter[i];
-        letterString += "\n\n";
+        console.log(`"Include References" setting contains an invalid value. it should be a boolean true or false.`);
     }
 
-}
+    let textString = convertToText(cv, "");
 
-if (config["cover letter"]["addressee"] !== "") {
-    letterString = letterString.replace("[ADDRESSEE]", config["cover letter"]["addressee"]);
-}
-else {
-    letterString = letterString.replace("[ADDRESSEE]", "Hiring Manager");
-}
+    /*
+     * Generating the Cover Letter
+     */
 
-let jobString = ""
+    let coverLetter = JSON.parse(await readFile(new URL(`./cover_letter.json`, import.meta.url)));
+    let letterString = "";
 
-if (config["job title"] !== "") {
-    jobString += "the open position for "
-    let vowels = ['a','i','e','o','u','A','I','E','O','U'];
-    if (vowels.find((v)=>{return (v===config["job title"][0]);})!== undefined) {jobString += "an ";}
-    else{jobString += "a ";}
-    jobString += config["job title"]
-    if (config["employer"] !== "") {
-        jobString += " with "
+    for (let i in coverLetter) {
+
+        if (coverLetter[i] === "[EXTRA PARAGRAPHS]") {
+            for (let i in config["cover letter"]["subject matter paragraphs"]) {
+                letterString += extraParas[(config["cover letter"]["subject matter paragraphs"][i])];
+                letterString += "\n\n";
+            }
+        }
+        else {
+            letterString += coverLetter[i];
+            letterString += "\n\n";
+        }
+
+    }
+
+    if (config["cover letter"]["addressee"] !== "") {
+        letterString = letterString.replace("[ADDRESSEE]", config["cover letter"]["addressee"]);
+    }
+    else {
+        letterString = letterString.replace("[ADDRESSEE]", "Hiring Manager");
+    }
+
+    let jobString = ""
+
+    if (config["job title"] !== "") {
+        jobString += "the open position for "
+        let vowels = ['a', 'i', 'e', 'o', 'u', 'A', 'I', 'E', 'O', 'U'];
+        if (vowels.find((v) => { return (v === config["job title"][0]); }) !== undefined) { jobString += "an "; }
+        else { jobString += "a "; }
+        jobString += config["job title"]
+        if (config["employer"] !== "") {
+            jobString += " with "
+            jobString += config["employer"];
+        }
+
+        folderName = './' + config["employer"].replace(/[/\\?%*:|"<>]/g, "").replace(/[\ ]/g, "_") + "_" + config["job title"].replace(/[/\\?%*:|"<>]/g, "").replace(/[\ ]/g, "_") + "/";
+    }
+    else if (config["employer"] !== "") {
+        jobString += "a position with "
         jobString += config["employer"];
+
+        folderName = './' + config["employer"].replace(/[/\\?%*:|"<>]/g, "").replace(/[\ ]/g, "_") + "/";
+    }
+    else {
+        console.warn("ERROR: You must provide either a job title or an employer name in the program configuration")
     }
 
-    folderName = './'+config["employer"].replace(/[/\\?%*:|"<>]/g, "").replace(/[\ ]/g, "_")+"_"+config["job title"].replace(/[/\\?%*:|"<>]/g, "").replace(/[\ ]/g, "_")+"/";
+
+    if (config["cover letter"]["job-specific paragraph"] !== "") {
+        letterString = letterString.replace("[POSITION]. ", "[POSITION]. " + config["cover letter"]["job-specific paragraph"] + "\n\n");
+    }
+
+
+    letterString = letterString.replace("[POSITION]", jobString);
+
+    if (config["job title"] !== undefined) {
+        letterString = letterString.replace("[POSITION/ORG]", "the position");
+    }
+    else {
+        letterString = letterString.replace("[POSITION/ORG]", "a position with " + ["employer"]);
+    }
+
+    /**
+     * Export Results
+     */
+
+    await cp(`./Job_Listing/`, folderName, { "force": true, "recursive": true })
+    if (exports.json) { await writeFile(`${folderName}${(cv["Contact Info"].name).replace(/[\ ]/g, "_")}_CV.json`, JSON.stringify(cv)); }
+    if (exports.debug) { await writeFile(`${folderName}${(cv["Contact Info"].name).replace(/[\ ]/g, "_")}_debug.json`, debugString); }
+    if (exports.text) { await writeFile(`${folderName}${(cv["Contact Info"].name).replace(/[\ ]/g, "_")}_CV.txt`, textString); }
+    if (exports.text || exports.text) { await writeFile(`${folderName}${(cv["Contact Info"].name).replace(/[\ ]/g, "_")}_Cover_Letter.txt`, letterString); }
+
 }
-else if (config["employer"] !== "") {
-    jobString += "a position with "
-    jobString += config["employer"];
-
-    folderName = './'+config["employer"].replace(/[/\\?%*:|"<>]/g, "").replace(/[\ ]/g, "_")+"/";
-}
-else {
-    console.warn("ERROR: You must provide either a job title or an employer name in the program configuration")
-}
-
-
-if (config["cover letter"]["job-specific paragraph"] !== "") {
-    letterString = letterString.replace("[POSITION]. ", "[POSITION]. "+config["cover letter"]["job-specific paragraph"]+"\n\n");
-}
-
-
-letterString = letterString.replace("[POSITION]",jobString);
-
-if (config["job title"]!== undefined){
-letterString = letterString.replace("[POSITION/ORG]", "the position");
-}
-else {
-    letterString = letterString.replace("[POSITION/ORG]", "a position with "+["employer"]);
-}
-
-/**
- * Export Results
- */
-
-await cp(`./Job_Listing/`, folderName, {"force": true, "recursive":true})
-if (exports.json){await writeFile(`${folderName}${(cv["Contact Info"].name).replace(/[\ ]/g, "_")}_CV.json`, JSON.stringify(cv));}
-if (exports.debug){await writeFile(`${folderName}${(cv["Contact Info"].name).replace(/[\ ]/g, "_")}_debug.json`, debugString);}
-if (exports.text){await writeFile(`${folderName}${(cv["Contact Info"].name).replace(/[\ ]/g, "_")}_CV.txt`, textString);}
-if (exports.text || exports.text){await writeFile(`${folderName}${(cv["Contact Info"].name).replace(/[\ ]/g, "_")}_Cover_Letter.txt`, letterString);}
-
 
 
 function extractSkills() {
 
+    let skillNames = Object.keys(skillsToExtract);
+
+    for (let i in skillNames){
+        if (skillsToExtract[skillNames[i]].regex !== undefined){
+            regexExtract(skillNames[i], skillsToExtract[skillNames[i]].regex);
+        }
+    }
+
     //regexes for some of the tricker ones
-    regexExtract("C", /\bc\b(?![\+\#])/i);  
-    regexExtract("C++", /c\+\+/i);
+    //regexExtract("C", /\bc\b(?![\+\#])/i);  
+    //regexExtract("C++", /c\+\+/i);
     regexExtract("C#", /c#/i);
-    regexExtract("HTML", /(?!\.)html/i);
+    //regexExtract("HTML", /(?!\.)html/i);
 
     regexExtract(".NET", /[^w]\.net\b/i);
     regexExtract(".NET", /asp\.net/i);
@@ -285,7 +317,7 @@ function extractSkill(skill, searchStrings, flags) {
     }
 }
 
-function baseExtract(skill, regex) {
+export function baseExtract(skill, regex) {
     let index = listing.search(regex);
     if (index !== -1) {
 

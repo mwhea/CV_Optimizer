@@ -4,7 +4,8 @@ import {
     clearSkills,
     getSkills,
     setListing,
-    extractSkill
+    extractSkill,
+    dontExtractFragments
 } from './cvParser';
 
 import { skillsToExtract } from './skillsToExtract.js';
@@ -85,6 +86,32 @@ describe("Test grouped criteria", () => {
         extractSkill(".NET", skillsToExtract[".NET"]["regex"]);
 
         expect(getSkills()).not.toEqual(['.NET']);
+
+    });
+
+});
+
+describe("Test short string automatic regex converter", () => {
+
+    beforeEach(() => {
+        clearSkills();
+    });
+
+    test(`Simple Positive Example`, () => {
+
+        setListing(`the java language`);
+
+        dontExtractFragments("Java", skillsToExtract["Java"]["shortString"]);
+        expect(getSkills()).toEqual(['Java'])
+
+    });
+
+    test(`Simple Negative Example`, () => {
+
+        setListing(`the javascript language`);
+
+        dontExtractFragments("Java", skillsToExtract["Java"]["shortString"]);
+        expect(getSkills()).not.toEqual(['Java'])
 
     });
 

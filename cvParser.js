@@ -228,9 +228,14 @@ function extractSkills() {
 
 }
 
-function dontExtractFragments(skill, searchString) {
+export function dontExtractFragments(skill, searchString) {
 
-    return regexExtract(skill, new RegExp("\\b" + searchString + "[^\\w\\b]", "i"));
+    let regexes = [];
+    for (let i in searchString) {
+        regexes.push(new RegExp("\\b" + searchString[i] + "\\b", "i"))
+    }
+
+    return regexExtract(skill, regexes);
 
 }
 

@@ -196,13 +196,13 @@ function extractSkills() {
             if (extractionTypes[j] === "regex") {
                 if (regexExtract(skillNames[i], skillsToExtract[skillNames[i]].regex)) { break; }
             }
-            if (extractionTypes[j] === "string") {
+            else if (extractionTypes[j] === "string") {
                 if (extractSkill(skillNames[i], skillsToExtract[skillNames[i]].string)) { break; }
             }
-            if (extractionTypes[j] === "shortString") {
+            else if (extractionTypes[j] === "shortString") {
                 if (dontExtractFragments(skillNames[i], skillsToExtract[skillNames[i]].shortString)) { break; }
             }
-            if (extractionTypes[j] === "caseSensitive") {
+            else if (extractionTypes[j] === "caseSensitive") {
                 if (extractSkill(skillNames[i], skillsToExtract[skillNames[i]].caseSensitive), "g") { break; }
             }
         }
@@ -210,7 +210,7 @@ function extractSkills() {
 
     for (let i in skillNames) {
 
-        if (skillsSought.find((s) => s === skillNames[i]) !== undefined) {
+        if (isSkillAlreadyPresent(skillNames[i])) {
             return;
         }
 
@@ -226,6 +226,26 @@ function extractSkills() {
 
     return skillsSought;
 
+}
+
+function addSkill(skill){
+
+    if (isSkillAlreadyPresent(skill)) {
+        console.log(`Tried to add ${skill} but it was already present. This isn't supposed to happen`)
+    }
+    else {
+        skillsSought.push(skill);
+    }
+
+}
+
+function isSkillAlreadyPresent(skill){
+    if (skillsSought.find((s) => s === skill) !== undefined) {
+        return true;
+    }
+    else {
+        return false;
+    }
 }
 
 export function dontExtractFragments(skill, searchString) {
@@ -271,7 +291,7 @@ export function baseExtract(skill, regex) {
 
         reportNewSkill(skill, "\"" + listing.toString().substring(startIndex, startIndex + exerptLen) + "\"");
 
-        skillsSought.push(skill);
+        addSkill(skill);
         return true;
     }
     else {
@@ -280,9 +300,6 @@ export function baseExtract(skill, regex) {
 }
 
 export function regexExtract(skill, regexes) {
-    if (skillsSought.find((s) => s === skill) !== undefined) {
-        return true;
-    }
     for (let i in regexes) {
         if (baseExtract(skill, new RegExp(regexes[i]))) {return true;}
     }
@@ -304,7 +321,7 @@ function inferSuperskill(skill, examples) {
 
             if (skillsSought.find((s) => s === examples[i]) !== undefined) {
                 reportNewSkill(skill, "presence of \"" + examples[i] + "\"");
-                skillsSought.push(skill);
+                addSkill(skill);
                 return;
             }
         }

@@ -183,7 +183,7 @@ async function main() {
 }
 
 
-function extractSkills() {
+export function extractSkills() {
 
     let skillNames = Object.keys(skillsToExtract);
 

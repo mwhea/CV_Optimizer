@@ -10,7 +10,12 @@
  */
 
 export const skillsToExtract = {
-  
+
+    /* Regex Resources
+        https://regex101.com/r/DlNrO4/1 
+        https://www.autoregex.xyz/
+    */
+
     ".NET": { regex: [/[^\w]\.net\b/i, /asp\.net/i] },
     "Angular": { string: ["angular"] },
     "Assembly": { string: ["assembly", "assembler"] },

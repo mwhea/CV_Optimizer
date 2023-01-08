@@ -20,19 +20,6 @@ import { skillsToExtract } from './skillsToExtract.js';
 let listing;
 let skillsSought = [];
 
-export function getSkills() {
-    return skillsSought;
-}
-
-export function clearSkills() {
-    skillsSought = [];
-}
-
-export function setListing(string) {
-    listing = string;
-}
-
-
 main();
 
 async function main() {
@@ -182,7 +169,9 @@ async function main() {
 
 }
 
-
+/**
+ * Extracts skills from the module-scoped listing to the module-scoped skillsSought
+ */
 export function extractSkills() {
 
     let skillNames = Object.keys(skillsToExtract);
@@ -210,7 +199,7 @@ export function extractSkills() {
 
     for (let i in skillNames) {
 
-        if (isSkillAlreadyPresent(skillNames[i])) {
+        if (isSkillPresent(skillNames[i])) {
             return;
         }
 
@@ -228,9 +217,13 @@ export function extractSkills() {
 
 }
 
-function addSkill(skill){
+/**
+ * Pushes skills to the skillsSought array with a check to ensure its not already present
+ */
 
-    if (isSkillAlreadyPresent(skill)) {
+function addSkill(skill) {
+
+    if (isSkillPresent(skill)) {
         console.log(`Tried to add ${skill} but it was already present. This isn't supposed to happen`)
     }
     else {
@@ -239,7 +232,12 @@ function addSkill(skill){
 
 }
 
-function isSkillAlreadyPresent(skill){
+/**
+ * Checks if a skill is present in the skillsSought array
+ * @returns ture/false
+ */
+
+function isSkillPresent(skill){
     if (skillsSought.find((s) => s === skill) !== undefined) {
         return true;
     }
@@ -248,16 +246,32 @@ function isSkillAlreadyPresent(skill){
     }
 }
 
-export function dontExtractFragments(skill, searchString) {
+/**
+ * Searches for presence of any member of an array of strings, not appearing as part of a larger word.
+ * as an intermediary step, converts all the strings to the appropriate regex, and calls regexExtract on the array
+ * @param {*} skill - The skill to register if any of the strings is discovered.
+ * @param {*} searchStrings - array of strings to search for
+ * @returns true/false, whether or not any of the search strings were found
+ */
+
+export function dontExtractFragments(skill, searchStrings) {
 
     let regexes = [];
-    for (let i in searchString) {
-        regexes.push(new RegExp("\\b" + searchString[i] + "\\b", "i"))
+    for (let i in searchStrings) {
+        regexes.push(new RegExp("\\b" + searchStrings[i] + "\\b", "i"))
     }
 
     return regexExtract(skill, regexes);
 
 }
+
+/**
+ * Adds a skill if any among an array of strings is found in the listing, ultimately called baseExtract on a generated regex for each string in the array.
+ * @param {*} skill - Name of the skill to add
+ * @param {*} searchStrings - array of candidate strings
+ * @param {*} flags - flags to pass to the generated regex
+ * @returns true/false. Was the skill added?
+ */
 
 export function extractSkill(skill, searchStrings, flags) {
 
@@ -316,14 +330,39 @@ function reportNewSkill(skill, criterion) {
 }
 
 function inferSuperskill(skill, examples) {
-    if (skillsSought.find((s) => s === skill) === undefined) {
-        for (let i in examples) {
+    for (let i in examples) {
 
-            if (skillsSought.find((s) => s === examples[i]) !== undefined) {
-                reportNewSkill(skill, "presence of \"" + examples[i] + "\"");
-                addSkill(skill);
-                return;
-            }
+        if (isSkillPresent(examples[i])) {
+            reportNewSkill(skill, "presence of \"" + examples[i] + "\"");
+            addSkill(skill);
+            return;
         }
     }
+
+}
+
+/**
+ * Getting for the skillsSought array. Only used for testing purposes.
+ * @returns the skillsSought array.
+ */
+export function getSkills() {
+    return skillsSought;
+}
+
+/**
+ * Clears the skillsSought array. Only used for testing purposes.
+ */
+export function clearSkills() {
+    skillsSought = [];
+}
+
+/**
+ * Setter for the listing. Only used for testing purposes.
+ */
+export function setListing(string) {
+    listing = string;
+}
+
+function fillCoverLetter() {
+
 }

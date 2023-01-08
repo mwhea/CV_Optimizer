@@ -284,6 +284,24 @@ describe("Test short string automatic regex converter", () => {
 
     });
 
+    test(`Don't get confused by slashes`, () => {
+
+        setListing(`the c/java/python languages`);
+
+        dontExtractFragments("Java", skillsToExtract["Java"]["shortString"]);
+        expect(getSkills()).toEqual(['Java'])
+
+    });
+
+    test(`At end of file`, () => {
+
+        setListing(`also java`);
+
+        dontExtractFragments("Java", skillsToExtract["Java"]["shortString"]);
+        expect(getSkills()).toEqual(['Java'])
+
+    });
+
 });
 
 
@@ -412,6 +430,7 @@ describe("Integration tests", () => {
         expect(getSkills()).toContain('git');
         expect(getSkills()).toContain('WebDev');
         expect(getSkills()).toContain('Mobile Apps');
+        expect(getSkills()).not.toContain('Linux');
 
     });
 

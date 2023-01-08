@@ -75,7 +75,7 @@
             },
             {
                 "name": "Typescript",
-                "importance": "3",
+                "importance": "1",
                 "skills demonstrated": [
                     "Typescript",
                     "WebDev"
@@ -197,6 +197,7 @@
             {
                 "name": "In personal time, learned Java database connectivity and built a program employing it.",
                 "importance": "1",
+                "order": "1",
                 "skills demonstrated": [
                     "Databases",
                     "Java"
@@ -287,7 +288,8 @@
                 "importance": "1",
                 "skills demonstrated": [
                     "Eclipse",
-                    "Momentics"
+                    "Momentics",
+                    "Neutrino"
                 ]
             },
             {
@@ -318,6 +320,7 @@
                 "name": "JUnit",
                 "importance": "1",
                 "skills demonstrated": [
+                    "JUnit",
                     "Testing"
                 ]
             },
@@ -325,6 +328,7 @@
                 "name": "Jest",
                 "importance": "1",
                 "skills demonstrated": [
+                    "Jest",
                     "Testing"
                 ]
             },
@@ -340,6 +344,14 @@
                 "importance": "1",
                 "skills demonstrated": [
                     "gdb"
+                ]
+            },
+            
+            {
+                "name": "PuTTY",
+                "importance": "1",
+                "skills demonstrated": [
+                    "Servers"
                 ]
             }
         ],
@@ -405,7 +417,7 @@
         "Problem Solving": [
             {
                 "name": "Won class challenge to implement final Assembly project with fewest machine instructions.",
-                "importance": "2",
+                "importance": "3",
                 "skills demonstrated": [
                     "Assembly"
                 ]
@@ -503,8 +515,9 @@
                 ]
             },
             {
-                "description": "The code can be found at https://github.com/mwhea/Manifold_Trading_Bots.",
-                "importance": "2",
+                "description": "(manifold.markets is a forecasting website dedicated to scoring predictions of future events. Its market format enables traditional trading strategies such as market-making and arbitrage.)",
+                "importance": "3",
+                "order": 9,
                 "skills demonstrated": [
                     "Finance",
                     "Javascript",
@@ -514,14 +527,24 @@
                 ]
             },
             {
-                "description": "(manifold.markets is a forecasting website dedicated to scoring predictions of future events. Its market format enables traditional trading strategies such as market-making and arbitrage.)",
-                "importance": "3",
+                "description": "The code can be found at https://github.com/mwhea/Manifold_Trading_Bots.",
+                "importance": "2",
+                "order": 10,
                 "skills demonstrated": [
                     "Finance",
                     "Javascript",
                     "NodeJS",
-                    "Typescript",
-                    "Politics"
+                    "Typescript"
+                ]
+            },
+            {
+                "description": "Integrated Twitter's stream API to enable rapid trades in response to breaking news.",
+                "importance": "1",
+                "skills demonstrated": [
+                    "Twitter",
+                    "Javascript",
+                    "NodeJS",
+                    "Typescript"
                 ]
             }
         ],
@@ -549,28 +572,30 @@
         ],
         "Home Server": [
             {
-                "description": "Repaired an old laptop sufficiently to run it as a server.",
+                "description": "Repaired an old laptop sufficiently to run it as a home server.",
                 "importance": "2",
                 "order": "-1",
                 "skills demonstrated": [
                     "Linux",
-                    "Hardware"
+                    "Hardware",
+                    "Servers"
                 ]
             },
             {
                 "description": "Installed Linux and useful software from the command line, such as VNC and cloud file storage.",
-                "importance": "1",
+                "importance": "2",
                 "skills demonstrated": [
                     "Linux",
-                    "shell scripting"
+                    "shell scripting",
+                    "Servers"
                 ]
             },
             {
-                "description": "There was lots of debugging involved.",
+                "description": "Needless to say, there was lots of troubleshooting involved.",
                 "importance": "1",
                 "skills demonstrated": [
                     "Debugging",
-                    "shell scripting"
+                    "Humor"
                 ]
             }
         ]

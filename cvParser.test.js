@@ -25,7 +25,7 @@ global.console = {
 
 //sample listing drawn from https://in.indeed.com/career-advice/finding-a-job/job-description-for-programmer
 
-let sampleListing = `Job Description For A Programmer (With Skills And Salary)
+let sampleListings = [`Job Description For A Programmer (With Skills And Salary)
 
 By Indeed Editorial Team
 
@@ -126,7 +126,77 @@ Soft skills
 
     Patience: Developing and testing software takes time as employers typically require testing code multiple times to find and fix bugs. A programmer should be able to stay patient while attempting various iterations of the same solution.
 
-`;
+`, `
+Systems Engineer Job Description: Top Duties and Requirements
+
+A Systems Engineer, or Engineer, is someone who is responsible for setting up and maintaining computer systems within an organization. Their primary duties include installing, testing, and maintaining computer operating systems.
+Systems Engineer duties and responsibilities
+
+When writing a job description for a Systems Engineer, specify the duties and responsibilities required to excel in the role, including:
+
+    Leading the communication system design and delivery for new systems, upgrades, or replacements
+    Preparing any control documents, test plans, reports, and installation drawings
+    Developing and presenting technical papers to help company executives understand the efficiency of the system
+    Sharing progress reports with leadership teams and other departments to communicate changes and developments
+    Designing, operating, and engineering key computer systems
+    Creating and executing test plans to further develop the computer systems
+    Working with other vendors and IT personnel for any problem resolutions required
+    Collaborating with other Systems Engineers or Systems Architects to understand application improvements, plans for change, or communicating back to the business
+
+Are you a Job Seeker? Find Jobs
+Systems Engineer Job Description Examples:
+1 / 2
+
+Hey there! While you’re here,
+why don’t you post your job to Indeed!
+No credit card required
+Easy posting process
+No contracts required
+What does a Systems Engineer do?
+
+A Systems Engineer works in an organization with other Engineers to make sure computer systems work effectively within the business. Typically, a Systems Engineer manages installed systems and is responsible for fixing any problems that may arise. Fixing computer issues may include troubleshooting or reverse-engineering systems to solve the problem. A Systems Engineer may also prepare any documentation required for others to use the computer systems and perform basic troubleshooting. Additionally, a Systems Engineer may work with vendors to secure contracts and ensure their company gets a favourable deal. Sometimes, Systems Engineers need to travel between company campuses or offices.
+Systems Engineer skills and qualifications
+
+A successful Systems Engineer will have various prerequisite skills and qualifications required for the duties performed in this job, including:
+
+    Experience in monitoring, training, and teaching junior staff members or other Systems Engineers
+    Strong verbal and written communication skills
+    Ability to manage multiple projects at the same time
+    Excellent planning and organizational skills
+    Experience working with or administering at least one cloud platform, such as Amazon Web Services, Microsoft Azure, or Google Cloud Platform
+    Excellent problem-solving and analytical thinking skills
+
+Systems Engineer experience requirements
+
+Systems Engineer job applicants generally need five or more years of experience working in the IT field. Look for applicants who have previously worked with public cloud platforms like Google Cloud Platform. Candidates who have experience working with infrastructure management, application development, or analytics software are an asset. Candidates also need experience reviewing and executing test plans to further system developments. Systems Engineers who have worked in a design office environment and have hands-on field experience are often preferred.
+Systems Engineer training and education
+
+Applicants should have at least a bachelor’s degree with a specialization in computer engineering, electrical engineering, engineering physics, or a related discipline. Generally, a master’s degree or doctoral degree in an engineering-related discipline is preferred. Make sure to look for an applicant who has been licensed by an accredited engineering association, such as the Professional Engineers of Ontario. It is also important to look for an applicant with a Professional Engineer (P.Eng) certification.
+Systems Engineer salary expectations
+
+According to Indeed Salaries, the average salary for a Systems Engineer in Canada is $84,551 per year. The salary can vary depending on experience, education, location, and type of company.
+Job description samples for similar roles
+
+If a Systems Engineer is not what you are looking for, other related descriptions include:
+
+    Engineer
+    Network Engineer
+
+Ready to Hire?
+Systems Engineer job description FAQs
+What should you look for in a Systems Engineer's resume?
+
+When looking at resumes for a Systems Engineer, it is important to make sure the job applicant is registered with an accredited licensing body. The job applicant should have a bachelor’s, master’s and/or doctoral degree in a relevant engineering discipline like computer science. Keep an eye out for key software programs used at the company to make sure those applying to the role have that experience. It’s also important that the applicant has enough experience required for the role.
+What makes a good Systems Engineer job description?
+
+A good Systems Engineer job description should list the software programs the applicant will use in the job. It should also list the duties involved in the position, such as compiling technical papers and reports, creating and executing test plans, and leading a team. The job description should have information about the type of projects that the department is currently working on and will work on in the future. 
+How do you make your Systems Engineer job description stand out?
+
+The best way to make a Systems Engineer job description stand out is to list the prominent duties and responsibilities, and the specific programs or systems currently used on the job. Include details about the company culture, and the size of the IT team and the departments they collaborate with most often. Highlight any company benefits, such as an RRSP-matching program, a defined pension plan, or performance bonuses.
+Job Description Examples
+
+Need help writing a job description for a specific role? Use these job description examples to create your next great job posting. Or if you’re ready to hire, post your job on Indeed.
+`];
 
 describe("Test grouped criteria", () => {
 
@@ -325,15 +395,15 @@ describe("Test regexes", () => {
 
 });
 
-describe("Bulk tests", () => {
+describe("Integration tests", () => {
 
     beforeEach(() => {
         clearSkills();
     });
 
-    test(`Indeed's Sample Listing`, () => {
+    test(`Sample Listing: 'Programmer'`, () => {
 
-        setListing(sampleListing);
+        setListing(sampleListings[0]);
 
         extractSkills();
         expect(getSkills()).toContain('CSS');
@@ -342,6 +412,17 @@ describe("Bulk tests", () => {
         expect(getSkills()).toContain('git');
         expect(getSkills()).toContain('WebDev');
         expect(getSkills()).toContain('Mobile Apps');
+
+    });
+
+    test(`Sample Listing: 'Systems Engineer'`, () => {
+
+        setListing(sampleListings[1]);
+
+        extractSkills();
+        expect(getSkills()).toContain('Cloud');
+        expect(getSkills()).toContain('Azure');
+        expect(getSkills()).not.toContain('Linux');
 
     });
 

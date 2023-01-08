@@ -22,9 +22,9 @@ There are three export formats:
 
 ## How to test:
 
-Jest support for ES Modules is experimental, run the tests with:
-`node --experimental-vm-modules node_modules/jest/bin/jest.js`
-individual test suites are run with:
+Jest support for ES Modules is experimental, run the tests with:<br/>
+`node --experimental-vm-modules node_modules/jest/bin/jest.js`<br/>
+individual test suites are run with:<br/>
 `node --experimental-vm-modules node_modules/jest/bin/jest.js ./cvParser.test.js`
 
 ## How to hire me:
